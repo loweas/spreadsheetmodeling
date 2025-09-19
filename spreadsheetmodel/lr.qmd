@@ -1,0 +1,13 @@
+---
+title: "Linear Regression & Time Series"
+format: html
+editor: visual
+---
+
+## This page will populate after:
+
+1.  Finishing Data Vis
+2.  Midterm
+3.  Linear Regression in Excel
+
+![](https://media2.giphy.com/media/v1.Y2lkPTZjMDliOTUycTkzcWNiNjczdmQ2Z2JqeWR5ZHYzMWhucmVpZHMyOXkweGd2dmdyMSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/um2kBnfo55iW4ZH1Fa/giphy-downsized.gif){alt="Waiting For An Answer GIFs - Find & Share on GIPHY"}
