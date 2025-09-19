@@ -151,6 +151,6 @@
     "href": "index.html#cell-references-vs.-variable-references",
     "title": "Spreadsheet Modeling",
     "section": "Cell References vs. Variable References",
-    "text": "Cell References vs. Variable References\n\n\n\n\n\n\n\n\nConcept\nExcel\nR\n\n\n\n\nReference\nA1, A:A\ndf$A[1],``df$A\n\n\nAlso Ref\nA:A\ndf``[1] (Indexing, not quite same)"
+    "text": "Cell References vs. Variable References\n\n\n\nConcept\nExcel\nR\n\n\n\n\nReference\nA1, A:A\ndf$A[1],df$A\n\n\nAlso Ref\nA:A\ndf[1] (Indexing, not quite same)"
   }
 ]

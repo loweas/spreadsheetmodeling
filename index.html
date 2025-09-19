@@ -491,11 +491,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="cell-references-vs.-variable-references" class="level2">
 <h2 class="anchored" data-anchor-id="cell-references-vs.-variable-references">Cell References vs.&nbsp;Variable References</h2>
 <table class="caption-top table">
-<colgroup>
-<col style="width: 18%">
-<col style="width: 18%">
-<col style="width: 62%">
-</colgroup>
 <thead>
 <tr class="header">
 <th><strong>Concept</strong></th>
@@ -507,12 +502,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tr class="odd">
 <td>Reference</td>
 <td><code>A1</code>, <code>A:A</code></td>
-<td><code>df$A[1],``df$A</code></td>
+<td><code>df$A[1],df$A</code></td>
 </tr>
 <tr class="even">
 <td>Also Ref</td>
 <td><code>A:A</code></td>
-<td><code>df``[1]</code> (Indexing, not quite same)</td>
+<td><code>df[1]</code> (Indexing, not quite same)</td>
 </tr>
 </tbody>
 </table>
@@ -648,7 +643,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/loweas\.github\.io\/spreadsheetmodeling\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -1068,19 +1063,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-95"><a href="#cb5-95" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-96"><a href="#cb5-96" aria-hidden="true" tabindex="-1"></a><span class="fu">## Text Operators / Functions</span></span>
 <span id="cb5-97"><a href="#cb5-97" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-98"><a href="#cb5-98" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Function / Operator** | **Excel Example** | **R Example**                             <span class="pp">|</span></span>
+<span id="cb5-98"><a href="#cb5-98" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Function / Operator** | **Excel Example** | **R Example** <span class="pp">|</span></span>
 <span id="cb5-99"><a href="#cb5-99" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------------------|-------------------|---------------------------------|</span></span>
-<span id="cb5-100"><a href="#cb5-100" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Concatenation           <span class="pp">|</span> <span class="in">`=A1 &amp; B1`</span>        <span class="pp">|</span> <span class="in">`paste(x, y, sep = "")`</span> or <span class="in">`paste0(x, y)`</span> <span class="pp">|</span></span>
-<span id="cb5-101"><a href="#cb5-101" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Uppercase               <span class="pp">|</span> <span class="in">`=UPPER(A1)`</span>      <span class="pp">|</span> <span class="in">`toupper(x)`</span>                              <span class="pp">|</span></span>
-<span id="cb5-102"><a href="#cb5-102" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Lowercase               <span class="pp">|</span> <span class="in">`=LOWER(A1)`</span>      <span class="pp">|</span> <span class="in">`tolower(x)`</span>                              <span class="pp">|</span></span>
-<span id="cb5-103"><a href="#cb5-103" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Length of string        <span class="pp">|</span> <span class="in">`=LEN(A1)`</span>        <span class="pp">|</span> <span class="in">`nchar(x)`</span>                                <span class="pp">|</span></span>
+<span id="cb5-100"><a href="#cb5-100" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Concatenation <span class="pp">|</span> <span class="in">`=A1 &amp; B1`</span> <span class="pp">|</span> <span class="in">`paste(x, y, sep = "")`</span> or <span class="in">`paste0(x, y)`</span> <span class="pp">|</span></span>
+<span id="cb5-101"><a href="#cb5-101" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Uppercase <span class="pp">|</span> <span class="in">`=UPPER(A1)`</span> <span class="pp">|</span> <span class="in">`toupper(x)`</span> <span class="pp">|</span></span>
+<span id="cb5-102"><a href="#cb5-102" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Lowercase <span class="pp">|</span> <span class="in">`=LOWER(A1)`</span> <span class="pp">|</span> <span class="in">`tolower(x)`</span> <span class="pp">|</span></span>
+<span id="cb5-103"><a href="#cb5-103" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Length of string <span class="pp">|</span> <span class="in">`=LEN(A1)`</span> <span class="pp">|</span> <span class="in">`nchar(x)`</span> <span class="pp">|</span></span>
 <span id="cb5-104"><a href="#cb5-104" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-105"><a href="#cb5-105" aria-hidden="true" tabindex="-1"></a><span class="fu">## Cell References vs. Variable References</span></span>
 <span id="cb5-106"><a href="#cb5-106" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-107"><a href="#cb5-107" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Concept** | **Excel**   | **R**                                      <span class="pp">|</span></span>
-<span id="cb5-108"><a href="#cb5-108" aria-hidden="true" tabindex="-1"></a><span class="pp">|-------------|-------------|--------------------------------------------|</span></span>
-<span id="cb5-109"><a href="#cb5-109" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Reference   <span class="pp">|</span> <span class="in">`A1`</span>, <span class="in">`A:A`</span> <span class="pp">|</span> ``` df$A<span class="co">[</span><span class="ot">1</span><span class="co">]</span>,``df$A ```                     <span class="pp">|</span></span>
-<span id="cb5-110"><a href="#cb5-110" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Also Ref    <span class="pp">|</span> <span class="in">`A:A`</span>       <span class="pp">|</span> ``` df``<span class="co">[</span><span class="ot">1</span><span class="co">]</span> ``` (Indexing, not quite same) <span class="pp">|</span></span>
+<span id="cb5-107"><a href="#cb5-107" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Concept** | **Excel**   | **R**                              <span class="pp">|</span></span>
+<span id="cb5-108"><a href="#cb5-108" aria-hidden="true" tabindex="-1"></a><span class="pp">|-------------|-------------|------------------------------------|</span></span>
+<span id="cb5-109"><a href="#cb5-109" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Reference   <span class="pp">|</span> <span class="in">`A1`</span>, <span class="in">`A:A`</span> <span class="pp">|</span> <span class="in">`df$A[1],df$A`</span>                     <span class="pp">|</span></span>
+<span id="cb5-110"><a href="#cb5-110" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Also Ref    <span class="pp">|</span> <span class="in">`A:A`</span>       <span class="pp">|</span> <span class="in">`df[1]`</span> (Indexing, not quite same) <span class="pp">|</span></span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
