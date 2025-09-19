@@ -1,0 +1,156 @@
+[
+  {
+    "objectID": "lo.html",
+    "href": "lo.html",
+    "title": "Linear Optimization",
+    "section": "",
+    "text": "Linear Regression\nTime Series Analysis\n\n\n\n\nIts So Exhausting Waiting For Death GIFs - Find & Share on GIPHY"
+  },
+  {
+    "objectID": "lo.html#we-will-be-using-this-after",
+    "href": "lo.html#we-will-be-using-this-after",
+    "title": "Linear Optimization",
+    "section": "",
+    "text": "Linear Regression\nTime Series Analysis\n\n\n\n\nIts So Exhausting Waiting For Death GIFs - Find & Share on GIPHY"
+  },
+  {
+    "objectID": "lr.html",
+    "href": "lr.html",
+    "title": "Linear Regression & Time Series",
+    "section": "",
+    "text": "Finishing Data Vis\nMidterm\nLinear Regression in Excel"
+  },
+  {
+    "objectID": "lr.html#this-page-will-populate-after",
+    "href": "lr.html#this-page-will-populate-after",
+    "title": "Linear Regression & Time Series",
+    "section": "",
+    "text": "Finishing Data Vis\nMidterm\nLinear Regression in Excel"
+  },
+  {
+    "objectID": "datavis.html",
+    "href": "datavis.html",
+    "title": "Spreadsheet Modeling",
+    "section": "",
+    "text": "These are the core packages used in R to recreate some of the basic data visualization examples we explored, such as bar charts, pie charts, and pivot-style summaries. Each of these tools plays a specific role from data import and cleaning to aggregation and plotting.\nWhile R provides a powerful and flexible framework for building reproducible and visualizations, it’s important to note the trade-offs in terms of efficiency and ease of use. For basic visual tasks, such as creating pie charts, bar graphs, or pivot tables, Excel is often faster and more intuitive, especially for users familiar with its drag-and-drop interface.\nAs a visualizations become more complex or need to be automated and repeated (e.g., across multiple datasets or time periods), R offers a more scalable and programmatic solution. The ability to script your workflow means you can quickly regenerate visuals without manually repeating steps: a major advantage over Excel for larger projects or reporting pipelines.\nIn short, Excel excels at speed and simplicity for one-off tasks, while R shines in flexibility, automation, and reproducibility for more advanced or recurring analysis and visualization tasks.\n\n#install.packages(\"ggplot2\")\n#install.packages(\"dplyr\")\n#install.packages(\"tidyr\")\n#install.packages(\"readxl\")\nlibrary(readxl)\nlibrary(dplyr)\n\n\nAttaching package: 'dplyr'\n\n\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n\n\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n\nlibrary(tidyr)\nlibrary(ggplot2)\n\nWarning: package 'ggplot2' was built under R version 4.3.3"
+  },
+  {
+    "objectID": "datavis.html#r-packages",
+    "href": "datavis.html#r-packages",
+    "title": "Spreadsheet Modeling",
+    "section": "",
+    "text": "These are the core packages used in R to recreate some of the basic data visualization examples we explored, such as bar charts, pie charts, and pivot-style summaries. Each of these tools plays a specific role from data import and cleaning to aggregation and plotting.\nWhile R provides a powerful and flexible framework for building reproducible and visualizations, it’s important to note the trade-offs in terms of efficiency and ease of use. For basic visual tasks, such as creating pie charts, bar graphs, or pivot tables, Excel is often faster and more intuitive, especially for users familiar with its drag-and-drop interface.\nAs a visualizations become more complex or need to be automated and repeated (e.g., across multiple datasets or time periods), R offers a more scalable and programmatic solution. The ability to script your workflow means you can quickly regenerate visuals without manually repeating steps: a major advantage over Excel for larger projects or reporting pipelines.\nIn short, Excel excels at speed and simplicity for one-off tasks, while R shines in flexibility, automation, and reproducibility for more advanced or recurring analysis and visualization tasks.\n\n#install.packages(\"ggplot2\")\n#install.packages(\"dplyr\")\n#install.packages(\"tidyr\")\n#install.packages(\"readxl\")\nlibrary(readxl)\nlibrary(dplyr)\n\n\nAttaching package: 'dplyr'\n\n\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n\n\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n\nlibrary(tidyr)\nlibrary(ggplot2)\n\nWarning: package 'ggplot2' was built under R version 4.3.3"
+  },
+  {
+    "objectID": "datavis.html#import-data",
+    "href": "datavis.html#import-data",
+    "title": "Spreadsheet Modeling",
+    "section": "Import Data",
+    "text": "Import Data\nBefore beginning your data visualization work in R, it’s important to ensure that R can locate and access the data file you want to work with. This typically involves setting the correct file path.\nIn the code below, you’ll need to replace the example file path with the actual path to your file. (MUST DO!)\nFor example, if your file is located on your Desktop in a folder named “ExcelFiles”, and the file is named “restaurant.xlsx”, the full file path might look like:\nOn Windows:\n\"C:/Users/YourName/Desktop/ExcelFiles/restaurant.xlsx\"\nOn Mac:\n\"/Users/YourName/Desktop/ExcelFiles/restaurant.xlsx\"\nBe sure to:\nWhat I would recommend is right click option mac Use forward slashes / instead of backslashes in the file path\nCheck that the file name is spelled correctly and includes the .xlsx extension\nEnsure the file is not open in Excel when R is trying to read it\nOnce you’ve set the correct file path, you can use the readxl package to import the data into R for analysis and visualization.\nIf the readxl package is not already installed on your computer, you’ll need to install it first using install.packages(“readxl”). After it’s installed, you load the package with library(readxl).\n\n# Fix the below script to find file you downloaded from Lamaku\n\n#restaurants &lt;- read_excel(\"~/Chapter 03/restaurant.xlsx\")\nhead(restaurants)\n\n# A tibble: 6 × 4\n  Restaurant `Quality Rating` `Meal Price ($)` `Wait Time (min)`\n       &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt;             &lt;dbl&gt;\n1          1 Good                           18                 5\n2          2 Very Good                      22                 6\n3          3 Good                           28                 1\n4          4 Excellent                      38                74\n5          5 Very Good                      33                 6\n6          6 Good                           28                 5"
+  },
+  {
+    "objectID": "datavis.html#graphs",
+    "href": "datavis.html#graphs",
+    "title": "Spreadsheet Modeling",
+    "section": "Graphs",
+    "text": "Graphs\n\nPie Graph\n\n# Summarize number of restaurants by quality rating\nrestaurant_counts &lt;- restaurants %&gt;%\n  group_by(`Quality Rating`) %&gt;%\n  summarise(Count = n(), .groups = \"drop\")\n\n# Create pie chart\nggplot(restaurant_counts, aes(x = \"\", y = Count, fill = `Quality Rating`)) +\n  geom_col(width = 1, color = \"white\") +\n  coord_polar(theta = \"y\") +\n  theme_void() +  # removes axes and background\n  labs(title = \"Number of Restaurants by Quality Rating\",\n       fill = \"Quality Rating\") +\n  theme(plot.title = element_text(hjust = 0.5))\n\n\n\n\n\n\n\n\n\n\nBar Graph\n\n# Create bar plot\nggplot(restaurant_counts, aes(x = `Quality Rating`, y = Count, fill = `Quality Rating`)) +\n  geom_bar(stat = \"identity\") +\n  labs(\n    title = \"Number of Restaurants by Quality Rating\",\n    x = \"Quality Rating\",\n    y = \"Number of Restaurants\"\n  ) +\n  theme_minimal() +\n  theme(legend.position = \"none\", plot.title = element_text(hjust = 0.5))"
+  },
+  {
+    "objectID": "datavis.html#tables",
+    "href": "datavis.html#tables",
+    "title": "Spreadsheet Modeling",
+    "section": "Tables",
+    "text": "Tables\n\nPivot Table to Dplyr\nThis is what we created in Excel using pivot\n\n\n# Step 1: Bin the Meal Price into $10 bins\nrestaurants_binned &lt;- restaurants %&gt;%\n  mutate(\n    PriceBin = cut(\n      `Meal Price ($)`,\n      breaks = seq(0, max(`Meal Price ($)`) + 10, by = 10),\n      include.lowest = TRUE,\n      right = FALSE  # e.g., [10,20)\n    )\n  )\n\n\n# Step 2: Count of restaurants by Quality Rating and Price Bin\npivot_table &lt;- restaurants_binned %&gt;%\n  group_by(`Quality Rating`, PriceBin) %&gt;%\n  summarise(RestaurantCount = n(), .groups = \"drop\") %&gt;%\n  pivot_wider(names_from = PriceBin, values_from = RestaurantCount, values_fill = 0)\n\n# View the result\nprint(pivot_table, width = Inf)\n\n# A tibble: 3 × 5\n  `Quality Rating` `[10,20)` `[20,30)` `[30,40)` `[40,50]`\n  &lt;chr&gt;                &lt;int&gt;     &lt;int&gt;     &lt;int&gt;     &lt;int&gt;\n1 Excellent                2        14        28        22\n2 Good                    42        40         2         0\n3 Very Good               34        64        46         6"
+  },
+  {
+    "objectID": "datavis.html#median",
+    "href": "datavis.html#median",
+    "title": "Spreadsheet Modeling",
+    "section": "Median",
+    "text": "Median\n\nmedian(restaurants$`Meal Price ($)`)\n\n[1] 25"
+  },
+  {
+    "objectID": "datavis.html#mean",
+    "href": "datavis.html#mean",
+    "title": "Spreadsheet Modeling",
+    "section": "Mean",
+    "text": "Mean\n\nmean(restaurants$`Meal Price ($)`)\n\n[1] 25.89667"
+  },
+  {
+    "objectID": "datavis.html#z-score",
+    "href": "datavis.html#z-score",
+    "title": "Spreadsheet Modeling",
+    "section": "Z-score",
+    "text": "Z-score\nA z-score measures how many standard deviations a value is from the mean.\n\n# Calculate z-scores for meal price\nrestaurants$Meal_Z &lt;- scale(restaurants$`Meal Price ($)`)\nhead(restaurants$Meal_Z)\n\n           [,1]\n[1,] -0.8502343\n[2,] -0.4195542\n[3,]  0.2264659\n[4,]  1.3031661\n[5,]  0.7648160\n[6,]  0.2264659"
+  },
+  {
+    "objectID": "datavis.html#percentile",
+    "href": "datavis.html#percentile",
+    "title": "Spreadsheet Modeling",
+    "section": "Percentile",
+    "text": "Percentile\n\n# 90th percentile of meal price\nquantile(restaurants$`Meal Price ($)`, probs = 0.90)\n\n90% \n 38"
+  },
+  {
+    "objectID": "datavis.html#quantile",
+    "href": "datavis.html#quantile",
+    "title": "Spreadsheet Modeling",
+    "section": "Quantile",
+    "text": "Quantile\n\n# 90th percentile of meal price\nquantile(restaurants$`Meal Price ($)`, probs = c(0, 0.25, 0.5, 0.75, 1))\n\n  0%  25%  50%  75% 100% \n  10   19   25   32   48"
+  },
+  {
+    "objectID": "datavis.html#correlation",
+    "href": "datavis.html#correlation",
+    "title": "Spreadsheet Modeling",
+    "section": "Correlation",
+    "text": "Correlation\n\ncor(restaurants$`Meal Price ($)`, restaurants$`Wait Time (min)`,)\n\n[1] 0.4628228"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Spreadsheet Modeling",
+    "section": "",
+    "text": "We will begin by downloading R and setting up RStudio, followed by practicing simple commands that mirror tasks we previously performed in Excel, such as basic calculations, summaries, and data viewing. We will then transition back to Excel into foundational statistical modeling by starting our exploration of linear regression.\nThe basics of using R, a powerful tool for data analysis and visualization. The goal is to ensure that by the end of the session, every student has R and RStudio successfully installed and can run simple commands confidently."
+  },
+  {
+    "objectID": "index.html#downloading-r",
+    "href": "index.html#downloading-r",
+    "title": "Spreadsheet Modeling",
+    "section": "",
+    "text": "We will begin by downloading R and setting up RStudio, followed by practicing simple commands that mirror tasks we previously performed in Excel, such as basic calculations, summaries, and data viewing. We will then transition back to Excel into foundational statistical modeling by starting our exploration of linear regression.\nThe basics of using R, a powerful tool for data analysis and visualization. The goal is to ensure that by the end of the session, every student has R and RStudio successfully installed and can run simple commands confidently."
+  },
+  {
+    "objectID": "index.html#comparison-operators",
+    "href": "index.html#comparison-operators",
+    "title": "Spreadsheet Modeling",
+    "section": "Comparison Operators",
+    "text": "Comparison Operators\n\n\n\n\n\n\n\n\n\nOperator\nFunction\nExcel Example\nR Example\n\n\n\n\n=\nEquality\n=A1=5\nx == 5\n\n\n&lt;&gt;\nNot equal\n=A1&lt;&gt;5\nx != 5\n\n\n&lt;\nLess than\n=A1&lt;5\nx &lt; 5\n\n\n&lt;=\nLess than or equal\n=A1&lt;=5\nx &lt;= 5\n\n\n&gt;\nGreater than\n=A1&gt;5\nx &gt; 5\n\n\n&gt;=\nGreater than or equal\n=A1&gt;=5\nx &gt;= 5"
+  },
+  {
+    "objectID": "index.html#logical-operators",
+    "href": "index.html#logical-operators",
+    "title": "Spreadsheet Modeling",
+    "section": "Logical Operators",
+    "text": "Logical Operators\n\n\n\n\n\n\n\n\n\nOperator\nFunction\nExcel Example\nR Example\n\n\nAND\nLogical AND\n=AND(A1&gt;5, B1&lt;10)\nx &gt; 5 & y &lt; 10\n\n\nOR\nLogical OR\n=OR(A1&gt;5, B1&lt;10)\nx &gt; 5 | y &lt; 10\n\n\nNOT\nLogical NOT\n=NOT(A1=5)\n!(x == 5)"
+  },
+  {
+    "objectID": "index.html#functions-same-concept-different-namessyntax",
+    "href": "index.html#functions-same-concept-different-namessyntax",
+    "title": "Spreadsheet Modeling",
+    "section": "Functions (Same Concept, Different Names/Syntax)",
+    "text": "Functions (Same Concept, Different Names/Syntax)\n\n\n\n\n\n\n\n\nFunction\nExcel Syntax\nR Syntax\n\n\n\n\nSum\n=SUM(A1:A10)\nsum(x)\n\n\nAverage\n=AVERAGE(A1:A10)\nmean(x)\n\n\nCount\n=COUNT(A1:A10)\nlength(x) or sum(!is.na(x))\n\n\nMaximum\n=MAX(A1:A10)\nmax(x)\n\n\nMinimum\n=MIN(A1:A10)\nmin(x)\n\n\nIF statement\n=IF(A1&gt;5, \"Yes\", \"No\")\nifelse(x &gt; 5, \"Yes\", \"No\")"
+  },
+  {
+    "objectID": "index.html#text-operators-functions",
+    "href": "index.html#text-operators-functions",
+    "title": "Spreadsheet Modeling",
+    "section": "Text Operators / Functions",
+    "text": "Text Operators / Functions\n\n\n\n\n\n\n\n\nFunction / Operator\nExcel Example\nR Example\n\n\n\n\nConcatenation\n=A1 & B1\npaste(x, y, sep = \"\") or paste0(x, y)\n\n\nUppercase\n=UPPER(A1)\ntoupper(x)\n\n\nLowercase\n=LOWER(A1)\ntolower(x)\n\n\nLength of string\n=LEN(A1)\nnchar(x)"
+  },
+  {
+    "objectID": "index.html#cell-references-vs.-variable-references",
+    "href": "index.html#cell-references-vs.-variable-references",
+    "title": "Spreadsheet Modeling",
+    "section": "Cell References vs. Variable References",
+    "text": "Cell References vs. Variable References\n\n\n\n\n\n\n\n\nConcept\nExcel\nR\n\n\n\n\nReference\nA1, A:A\ndf$A[1],``df$A\n\n\nAlso Ref\nA:A\ndf``[1] (Indexing, not quite same)"
+  }
+]

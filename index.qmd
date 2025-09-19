@@ -1,0 +1,106 @@
+---
+title: "Spreadsheet Modeling"
+author: "LoweMackenzie"
+date: 2024-09-17
+
+
+format:
+  html:
+    code-fold: false        # Enables dropdown for code
+    code-tools: true       # (Optional) Adds buttons like "Show Code"
+    code-summary: "Show code"  # (Optional) Custom label for dropdown
+    toc: true
+    toc-location: left
+    page-layout: full
+editor: visual
+---
+
+# Spreadsheet Modeling
+
+## Downloading R
+
+We will begin by [downloading R](https://posit.co/download/rstudio-desktop/) and setting up RStudio, followed by practicing simple commands that mirror tasks we previously performed in Excel, such as basic calculations, summaries, and data viewing. We will then transition back to Excel into foundational statistical modeling by starting our exploration of linear regression.
+
+The basics of [using R](https://posit.co/download/rstudio-desktop/), a powerful tool for data analysis and visualization. The goal is to ensure that by the end of the session, every student has [R and RStudio](https://posit.co/download/rstudio-desktop/) successfully installed and can run simple commands confidently.
+
+## Basics
+
+![](images/Screenshot%202025-09-16%20at%206.22.32%20PM.png)
+
+# Common Operations Excel/R
+
+Instead of working in the formula bar in excel:
+
+You work in the console
+
+![](images/Screenshot%202025-09-16%20at%202.22.15%20PM.png)
+
+Many functional characters and operators used in **Excel** also appear in **R**, often serving similar roles in formulas and expressions. Below is a comparison table of some commonly used functional characters/operators in both:
+
+|              |                |                   |               |
+|--------------|----------------|-------------------|---------------|
+|              |                |                   |               |
+| **Operator** | **Function**   | **Excel Example** | **R Example** |
+| `+`          | Addition       | `=A1 + B1`        | `x + y`       |
+| `-`          | Subtraction    | `=A1 - B1`        | `x - y`       |
+| `*`          | Multiplication | `=A1 * B1`        | `x * y`       |
+| `/`          | Division       | `=A1 / B1`        | `x / y`       |
+| `^`          | Exponentiation | `=A1 ^ 2`         | `x ^ 2`       |
+
+Examples:
+
+```{r}
+1 + 1
+```
+
+```{r}
+2 * 2
+```
+
+## Comparison Operators
+
+| **Operator** | **Function**          | **Excel Example** | **R Example** |
+|--------------|-----------------------|-------------------|---------------|
+| `=`          | Equality              | `=A1=5`           | `x == 5`      |
+| `<>`         | Not equal             | `=A1<>5`          | `x != 5`      |
+| `<`          | Less than             | `=A1<5`           | `x < 5`       |
+| `<=`         | Less than or equal    | `=A1<=5`          | `x <= 5`      |
+| `>`          | Greater than          | `=A1>5`           | `x > 5`       |
+| `>=`         | Greater than or equal | `=A1>=5`          | `x >= 5`      |
+
+## Logical Operators
+
+|              |              |                     |                  |
+|--------------|--------------|---------------------|------------------|
+|              |              |                     |                  |
+| **Operator** | **Function** | **Excel Example**   | **R Example**    |
+| `AND`        | Logical AND  | `=AND(A1>5, B1<10)` | `x > 5 & y < 10` |
+| `OR`         | Logical OR   | `=OR(A1>5, B1<10)`  | `x > 5 | y < 10` |
+| `NOT`        | Logical NOT  | `=NOT(A1=5)`        | `!(x == 5)`      |
+
+## Functions (Same Concept, Different Names/Syntax)
+
+| **Function** | **Excel Syntax**         | **R Syntax**                    |
+|--------------|--------------------------|---------------------------------|
+| Sum          | `=SUM(A1:A10)`           | `sum(x)`                        |
+| Average      | `=AVERAGE(A1:A10)`       | `mean(x)`                       |
+| Count        | `=COUNT(A1:A10)`         | `length(x)` or `sum(!is.na(x))` |
+| Maximum      | `=MAX(A1:A10)`           | `max(x)`                        |
+| Minimum      | `=MIN(A1:A10)`           | `min(x)`                        |
+| IF statement | `=IF(A1>5, "Yes", "No")` | `ifelse(x > 5, "Yes", "No")`    |
+
+## Text Operators / Functions
+
+| **Function / Operator** | **Excel Example** | **R Example**                             |
+|--------------------|-------------------|---------------------------------|
+| Concatenation           | `=A1 & B1`        | `paste(x, y, sep = "")` or `paste0(x, y)` |
+| Uppercase               | `=UPPER(A1)`      | `toupper(x)`                              |
+| Lowercase               | `=LOWER(A1)`      | `tolower(x)`                              |
+| Length of string        | `=LEN(A1)`        | `nchar(x)`                                |
+
+## Cell References vs. Variable References
+
+| **Concept** | **Excel**   | **R**                                      |
+|-------------|-------------|--------------------------------------------|
+| Reference   | `A1`, `A:A` | ``` df$A[1],``df$A ```                     |
+| Also Ref    | `A:A`       | ``` df``[1] ``` (Indexing, not quite same) |
