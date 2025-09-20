@@ -81,6 +81,20 @@ restaurants <- read_excel("/Users/ashleylowe/Desktop/SpreadsheetModeling429/Exce
 head(restaurants)
 ```
 
+## Another Importing Data 
+
+**Files (Bottom-Right):**
+
+Go through the folder path to where the data is and click on the data to reveal the import option.
+
+![](images/Screenshot 2025-09-19 at 2.09.22 PM.png)
+
+Then the following screen will pop up.
+
+![](images/Screenshot 2025-09-19 at 2.09.33 PM.png)
+
+Import the data and you will notice the code needed will run in the console. Which you can copy and paste for later or at least take note of because it will show you what the manual code should have looked at.
+
 ## Graphs
 
 ### Pie Graph

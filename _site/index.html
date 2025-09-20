@@ -179,14 +179,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#downloading-r" id="toc-downloading-r" class="nav-link" data-scroll-target="#downloading-r">Downloading R</a></li>
   <li><a href="#basics" id="toc-basics" class="nav-link" data-scroll-target="#basics">Basics</a></li>
-  </ul></li>
-  <li><a href="#common-operations-excelr" id="toc-common-operations-excelr" class="nav-link" data-scroll-target="#common-operations-excelr">Common Operations Excel/R</a>
-  <ul class="collapse">
   <li><a href="#comparison-operators" id="toc-comparison-operators" class="nav-link" data-scroll-target="#comparison-operators">Comparison Operators</a></li>
   <li><a href="#logical-operators" id="toc-logical-operators" class="nav-link" data-scroll-target="#logical-operators">Logical Operators</a></li>
   <li><a href="#functions-same-concept-different-namessyntax" id="toc-functions-same-concept-different-namessyntax" class="nav-link" data-scroll-target="#functions-same-concept-different-namessyntax">Functions (Same Concept, Different Names/Syntax)</a></li>
   <li><a href="#text-operators-functions" id="toc-text-operators-functions" class="nav-link" data-scroll-target="#text-operators-functions">Text Operators / Functions</a></li>
   <li><a href="#cell-references-vs.-variable-references" id="toc-cell-references-vs.-variable-references" class="nav-link" data-scroll-target="#cell-references-vs.-variable-references">Cell References vs.&nbsp;Variable References</a></li>
+  </ul></li>
+  <li><a href="#rstudio-interface" id="toc-rstudio-interface" class="nav-link" data-scroll-target="#rstudio-interface">Rstudio Interface</a>
+  <ul class="collapse">
+  <li><a href="#upper-right" id="toc-upper-right" class="nav-link" data-scroll-target="#upper-right">Upper Right</a></li>
+  <li><a href="#upper-left" id="toc-upper-left" class="nav-link" data-scroll-target="#upper-left">Upper Left</a></li>
+  <li><a href="#bottom-left" id="toc-bottom-left" class="nav-link" data-scroll-target="#bottom-left">Bottom Left</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -234,17 +237,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="downloading-r" class="level2">
 <h2 class="anchored" data-anchor-id="downloading-r">Downloading R</h2>
 <p>We will begin by <a href="https://posit.co/download/rstudio-desktop/">downloading R</a> and setting up RStudio, followed by practicing simple commands that mirror tasks we previously performed in Excel, such as basic calculations, summaries, and data viewing. We will then transition back to Excel into foundational statistical modeling by starting our exploration of linear regression.</p>
-<p>The basics of <a href="https://posit.co/download/rstudio-desktop/">using R</a>, a powerful tool for data analysis and visualization. The goal is to ensure that by the end of the session, every student has <a href="https://posit.co/download/rstudio-desktop/">R and RStudio</a> successfully installed and can run simple commands confidently.</p>
+<p>This site has some cool educational sources for <a href="https://education.rstudio.com/learn/beginner/">using R</a>. The goal is to ensure that by the end of the session, every student has <a href="https://posit.co/download/rstudio-desktop/">R and RStudio</a> successfully installed and can run simple commands confidently.</p>
+<p>Why have you learn this when were using Execl? Because everything your learning in excel is transferable to other data visual programs and though I donʻ t want to make R a large portion of the class just having experience in R is a resume builder.</p>
 </section>
 <section id="basics" class="level2">
 <h2 class="anchored" data-anchor-id="basics">Basics</h2>
-<p><img src="images/Screenshot 2025-09-16 at 6.22.32 PM.png" class="img-fluid"></p>
-</section>
-</section>
-<section id="common-operations-excelr" class="level1">
-<h1>Common Operations Excel/R</h1>
+<p>The biggest difference between R and Excel is where you conduct your formula commands and the manipulation of the data in the Cell.</p>
 <p>Instead of working in the formula bar in excel:</p>
-<p>You work in the console</p>
+<p><img src="images/Screenshot 2025-09-16 at 6.22.32 PM.png" class="img-fluid"></p>
+<p>You work in the console. Instead of being able to work within a cell within a sheet (like we do in Excel) all of the commands and manipulation are conducted in the console.</p>
 <p><img src="images/Screenshot 2025-09-16 at 2.22.15 PM.png" class="img-fluid"></p>
 <p>Many functional characters and operators used in <strong>Excel</strong> also appear in <strong>R</strong>, often serving similar roles in formulas and expressions. Below is a comparison table of some commonly used functional characters/operators in both:</p>
 <table class="caption-top table">
@@ -306,6 +307,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>[1] 4</code></pre>
 </div>
 </div>
+</section>
 <section id="comparison-operators" class="level2">
 <h2 class="anchored" data-anchor-id="comparison-operators">Comparison Operators</h2>
 <table class="caption-top table">
@@ -491,11 +493,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="cell-references-vs.-variable-references" class="level2">
 <h2 class="anchored" data-anchor-id="cell-references-vs.-variable-references">Cell References vs.&nbsp;Variable References</h2>
 <table class="caption-top table">
-<colgroup>
-<col style="width: 18%">
-<col style="width: 18%">
-<col style="width: 62%">
-</colgroup>
 <thead>
 <tr class="header">
 <th><strong>Concept</strong></th>
@@ -507,15 +504,56 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tr class="odd">
 <td>Reference</td>
 <td><code>A1</code>, <code>A:A</code></td>
-<td><code>df$A[1],``df$A</code></td>
+<td><code>df$A[1],df$A</code></td>
 </tr>
 <tr class="even">
 <td>Also Ref</td>
 <td><code>A:A</code></td>
-<td><code>df``[1]</code> (Indexing, not quite same)</td>
+<td><code>df[1]</code> (Indexing, not quite same)</td>
 </tr>
 </tbody>
 </table>
+</section>
+</section>
+<section id="rstudio-interface" class="level1">
+<h1>Rstudio Interface</h1>
+<p>Here is my interface you can see this website Quarto file in the top right field.</p>
+<section id="upper-right" class="level2">
+<h2 class="anchored" data-anchor-id="upper-right">Upper Right</h2>
+<ul>
+<li><p><strong>Source/Script Editor (Top-Left):</strong></p>
+<p>This pane is for writing, editing, and saving R scripts. You can compose multiple lines of code, add comments, and save your work for future use and reproducibility. Commands written here are not executed until you explicitly run them.</p></li>
+</ul>
+<p><img src="images/Screenshot 2025-09-19 at 2.01.37 PM.png" class="img-fluid"></p>
+</section>
+<section id="upper-left" class="level2">
+<h2 class="anchored" data-anchor-id="upper-left">Upper Left</h2>
+<p><strong>Environment/History/Connections/Tutorial :</strong></p>
+<ul>
+<li><p>This pane provides insights into your current R session.</p>
+<ul>
+<li><p><strong>Environment:</strong> Displays all the objects (datasets, variables, functions, etc.) currently loaded in your R workspace.</p></li>
+<li><p><strong>History:</strong> Keeps a record of the commands you have executed in the console during the current session.</p></li>
+<li><p><strong>Connections:</strong> Allows you to manage connections to external data sources or databases.</p></li>
+<li><p><strong>Tutorial:</strong> Provides access to interactive tutorials for learning R.</p></li>
+</ul></li>
+</ul>
+<p><img src="images/Screenshot 2025-09-19 at 2.09.45 PM.png" class="img-fluid"></p>
+</section>
+<section id="bottom-left" class="level2">
+<h2 class="anchored" data-anchor-id="bottom-left">Bottom Left</h2>
+<p><strong>Files/Plots/Packages/Help/Viewer (Bottom-Right):</strong></p>
+<ul>
+<li><p>This multifunctional pane offers various tools:</p>
+<ul>
+<li><p><strong>Files:</strong> Navigates your file system and manages files and directories within your R project.</p></li>
+<li><p><strong>Plots:</strong> Displays any plots or visualizations generated by your R code.</p></li>
+<li><p><strong>Packages:</strong> Lists installed R packages, allows you to install new ones, and load/unload packages for use.</p></li>
+<li><p><strong>Help:</strong> Provides access to R’s extensive documentation and help files for functions and packages.</p></li>
+<li><p><strong>Viewer:</strong> Used for viewing local web content generated within R, such as interactive plots or Shiny applications.</p></li>
+</ul></li>
+</ul>
+<p><img src="images/Screenshot 2025-09-19 at 2.09.22 PM.png" class="img-fluid"></p>
 
 
 <!-- -->
@@ -648,7 +686,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/loweas\.github\.io\/spreadsheetmodeling\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -998,89 +1036,137 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>We will begin by <span class="co">[</span><span class="ot">downloading R</span><span class="co">](https://posit.co/download/rstudio-desktop/)</span> and setting up RStudio, followed by practicing simple commands that mirror tasks we previously performed in Excel, such as basic calculations, summaries, and data viewing. We will then transition back to Excel into foundational statistical modeling by starting our exploration of linear regression.</span>
 <span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>The basics of <span class="co">[</span><span class="ot">using R</span><span class="co">](https://posit.co/download/rstudio-desktop/)</span>, a powerful tool for data analysis and visualization. The goal is to ensure that by the end of the session, every student has <span class="co">[</span><span class="ot">R and RStudio</span><span class="co">](https://posit.co/download/rstudio-desktop/)</span> successfully installed and can run simple commands confidently.</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>This site has some cool educational sources for <span class="co">[</span><span class="ot">using R</span><span class="co">](https://education.rstudio.com/learn/beginner/)</span>. The goal is to ensure that by the end of the session, every student has <span class="co">[</span><span class="ot">R and RStudio</span><span class="co">](https://posit.co/download/rstudio-desktop/)</span> successfully installed and can run simple commands confidently.</span>
 <span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="fu">## Basics</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>Why have you learn this when were using Execl? Because everything your learning in excel is transferable to other data visual programs and though I donʻ t want to make R a large portion of the class just having experience in R is a resume builder.</span>
 <span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/Screenshot%202025-09-16%20at%206.22.32%20PM.png)</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="fu">## Basics</span></span>
 <span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a><span class="fu"># Common Operations Excel/R</span></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>The biggest difference between R and Excel is where you conduct your formula commands and the manipulation of the data in the Cell.</span>
 <span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>Instead of working in the formula bar in excel:</span>
 <span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>You work in the console</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/Screenshot%202025-09-16%20at%206.22.32%20PM.png)</span></span>
 <span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/Screenshot%202025-09-16%20at%202.22.15%20PM.png)</span></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>You work in the console. Instead of being able to work within a cell within a sheet (like we do in Excel) all of the commands and manipulation are conducted in the console.</span>
 <span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>Many functional characters and operators used in **Excel** also appear in **R**, often serving similar roles in formulas and expressions. Below is a comparison table of some commonly used functional characters/operators in both:</span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/Screenshot%202025-09-16%20at%202.22.15%20PM.png)</span></span>
 <span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span>              <span class="pp">|</span>                <span class="pp">|</span>                   <span class="pp">|</span>               <span class="pp">|</span></span>
-<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------------|----------------|-------------------|---------------|</span></span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>Many functional characters and operators used in **Excel** also appear in **R**, often serving similar roles in formulas and expressions. Below is a comparison table of some commonly used functional characters/operators in both:</span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span>              <span class="pp">|</span>                <span class="pp">|</span>                   <span class="pp">|</span>               <span class="pp">|</span></span>
-<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Operator** | **Function**   | **Excel Example** | **R Example** <span class="pp">|</span></span>
-<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`+`</span>          <span class="pp">|</span> Addition       <span class="pp">|</span> <span class="in">`=A1 + B1`</span>        <span class="pp">|</span> <span class="in">`x + y`</span>       <span class="pp">|</span></span>
-<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`-`</span>          <span class="pp">|</span> Subtraction    <span class="pp">|</span> <span class="in">`=A1 - B1`</span>        <span class="pp">|</span> <span class="in">`x - y`</span>       <span class="pp">|</span></span>
-<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`*`</span>          <span class="pp">|</span> Multiplication <span class="pp">|</span> <span class="in">`=A1 * B1`</span>        <span class="pp">|</span> <span class="in">`x * y`</span>       <span class="pp">|</span></span>
-<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`/`</span>          <span class="pp">|</span> Division       <span class="pp">|</span> <span class="in">`=A1 / B1`</span>        <span class="pp">|</span> <span class="in">`x / y`</span>       <span class="pp">|</span></span>
-<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`^`</span>          <span class="pp">|</span> Exponentiation <span class="pp">|</span> <span class="in">`=A1 ^ 2`</span>         <span class="pp">|</span> <span class="in">`x ^ 2`</span>       <span class="pp">|</span></span>
-<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a>Examples:</span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------------|----------------|-------------------|---------------|</span></span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span>              <span class="pp">|</span>                <span class="pp">|</span>                   <span class="pp">|</span>               <span class="pp">|</span></span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Operator** | **Function**   | **Excel Example** | **R Example** <span class="pp">|</span></span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`+`</span>          <span class="pp">|</span> Addition       <span class="pp">|</span> <span class="in">`=A1 + B1`</span>        <span class="pp">|</span> <span class="in">`x + y`</span>       <span class="pp">|</span></span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`-`</span>          <span class="pp">|</span> Subtraction    <span class="pp">|</span> <span class="in">`=A1 - B1`</span>        <span class="pp">|</span> <span class="in">`x - y`</span>       <span class="pp">|</span></span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`*`</span>          <span class="pp">|</span> Multiplication <span class="pp">|</span> <span class="in">`=A1 * B1`</span>        <span class="pp">|</span> <span class="in">`x * y`</span>       <span class="pp">|</span></span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`/`</span>          <span class="pp">|</span> Division       <span class="pp">|</span> <span class="in">`=A1 / B1`</span>        <span class="pp">|</span> <span class="in">`x / y`</span>       <span class="pp">|</span></span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`^`</span>          <span class="pp">|</span> Exponentiation <span class="pp">|</span> <span class="in">`=A1 ^ 2`</span>         <span class="pp">|</span> <span class="in">`x ^ 2`</span>       <span class="pp">|</span></span>
 <span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">*</span> <span class="dv">2</span></span>
-<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a><span class="fu">## Comparison Operators</span></span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a>Examples:</span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">*</span> <span class="dv">2</span></span>
+<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Operator** | **Function**          | **Excel Example** | **R Example** <span class="pp">|</span></span>
-<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------------|-----------------------|-------------------|---------------|</span></span>
-<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`=`</span>          <span class="pp">|</span> Equality              <span class="pp">|</span> <span class="in">`=A1=5`</span>           <span class="pp">|</span> <span class="in">`x == 5`</span>      <span class="pp">|</span></span>
-<span id="cb5-69"><a href="#cb5-69" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`&lt;&gt;`</span>         <span class="pp">|</span> Not equal             <span class="pp">|</span> <span class="in">`=A1&lt;&gt;5`</span>          <span class="pp">|</span> <span class="in">`x != 5`</span>      <span class="pp">|</span></span>
-<span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`&lt;`</span>          <span class="pp">|</span> Less than             <span class="pp">|</span> <span class="in">`=A1&lt;5`</span>           <span class="pp">|</span> <span class="in">`x &lt; 5`</span>       <span class="pp">|</span></span>
-<span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`&lt;=`</span>         <span class="pp">|</span> Less than or equal    <span class="pp">|</span> <span class="in">`=A1&lt;=5`</span>          <span class="pp">|</span> <span class="in">`x &lt;= 5`</span>      <span class="pp">|</span></span>
-<span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`&gt;`</span>          <span class="pp">|</span> Greater than          <span class="pp">|</span> <span class="in">`=A1&gt;5`</span>           <span class="pp">|</span> <span class="in">`x &gt; 5`</span>       <span class="pp">|</span></span>
-<span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`&gt;=`</span>         <span class="pp">|</span> Greater than or equal <span class="pp">|</span> <span class="in">`=A1&gt;=5`</span>          <span class="pp">|</span> <span class="in">`x &gt;= 5`</span>      <span class="pp">|</span></span>
-<span id="cb5-74"><a href="#cb5-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-75"><a href="#cb5-75" aria-hidden="true" tabindex="-1"></a><span class="fu">## Logical Operators</span></span>
+<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a><span class="fu">## Comparison Operators</span></span>
+<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Operator** | **Function**          | **Excel Example** | **R Example** <span class="pp">|</span></span>
+<span id="cb5-69"><a href="#cb5-69" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------------|-----------------------|-------------------|---------------|</span></span>
+<span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`=`</span>          <span class="pp">|</span> Equality              <span class="pp">|</span> <span class="in">`=A1=5`</span>           <span class="pp">|</span> <span class="in">`x == 5`</span>      <span class="pp">|</span></span>
+<span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`&lt;&gt;`</span>         <span class="pp">|</span> Not equal             <span class="pp">|</span> <span class="in">`=A1&lt;&gt;5`</span>          <span class="pp">|</span> <span class="in">`x != 5`</span>      <span class="pp">|</span></span>
+<span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`&lt;`</span>          <span class="pp">|</span> Less than             <span class="pp">|</span> <span class="in">`=A1&lt;5`</span>           <span class="pp">|</span> <span class="in">`x &lt; 5`</span>       <span class="pp">|</span></span>
+<span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`&lt;=`</span>         <span class="pp">|</span> Less than or equal    <span class="pp">|</span> <span class="in">`=A1&lt;=5`</span>          <span class="pp">|</span> <span class="in">`x &lt;= 5`</span>      <span class="pp">|</span></span>
+<span id="cb5-74"><a href="#cb5-74" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`&gt;`</span>          <span class="pp">|</span> Greater than          <span class="pp">|</span> <span class="in">`=A1&gt;5`</span>           <span class="pp">|</span> <span class="in">`x &gt; 5`</span>       <span class="pp">|</span></span>
+<span id="cb5-75"><a href="#cb5-75" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`&gt;=`</span>         <span class="pp">|</span> Greater than or equal <span class="pp">|</span> <span class="in">`=A1&gt;=5`</span>          <span class="pp">|</span> <span class="in">`x &gt;= 5`</span>      <span class="pp">|</span></span>
 <span id="cb5-76"><a href="#cb5-76" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-77"><a href="#cb5-77" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span>              <span class="pp">|</span>              <span class="pp">|</span>                     <span class="pp">|</span>                  <span class="pp">|</span></span>
-<span id="cb5-78"><a href="#cb5-78" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------------|--------------|---------------------|------------------|</span></span>
+<span id="cb5-77"><a href="#cb5-77" aria-hidden="true" tabindex="-1"></a><span class="fu">## Logical Operators</span></span>
+<span id="cb5-78"><a href="#cb5-78" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-79"><a href="#cb5-79" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span>              <span class="pp">|</span>              <span class="pp">|</span>                     <span class="pp">|</span>                  <span class="pp">|</span></span>
-<span id="cb5-80"><a href="#cb5-80" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Operator** | **Function** | **Excel Example**   | **R Example**    <span class="pp">|</span></span>
-<span id="cb5-81"><a href="#cb5-81" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`AND`</span>        <span class="pp">|</span> Logical AND  <span class="pp">|</span> <span class="in">`=AND(A1&gt;5, B1&lt;10)`</span> <span class="pp">|</span> <span class="in">`x &gt; 5 &amp; y &lt; 10`</span> <span class="pp">|</span></span>
-<span id="cb5-82"><a href="#cb5-82" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`OR`</span>         <span class="pp">|</span> Logical OR   <span class="pp">|</span> <span class="in">`=OR(A1&gt;5, B1&lt;10)`</span>  <span class="pp">|</span> <span class="in">`x &gt; 5 | y &lt; 10`</span> <span class="pp">|</span></span>
-<span id="cb5-83"><a href="#cb5-83" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`NOT`</span>        <span class="pp">|</span> Logical NOT  <span class="pp">|</span> <span class="in">`=NOT(A1=5)`</span>        <span class="pp">|</span> <span class="in">`!(x == 5)`</span>      <span class="pp">|</span></span>
-<span id="cb5-84"><a href="#cb5-84" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-85"><a href="#cb5-85" aria-hidden="true" tabindex="-1"></a><span class="fu">## Functions (Same Concept, Different Names/Syntax)</span></span>
+<span id="cb5-80"><a href="#cb5-80" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------------|--------------|---------------------|------------------|</span></span>
+<span id="cb5-81"><a href="#cb5-81" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span>              <span class="pp">|</span>              <span class="pp">|</span>                     <span class="pp">|</span>                  <span class="pp">|</span></span>
+<span id="cb5-82"><a href="#cb5-82" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Operator** | **Function** | **Excel Example**   | **R Example**    <span class="pp">|</span></span>
+<span id="cb5-83"><a href="#cb5-83" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`AND`</span>        <span class="pp">|</span> Logical AND  <span class="pp">|</span> <span class="in">`=AND(A1&gt;5, B1&lt;10)`</span> <span class="pp">|</span> <span class="in">`x &gt; 5 &amp; y &lt; 10`</span> <span class="pp">|</span></span>
+<span id="cb5-84"><a href="#cb5-84" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`OR`</span>         <span class="pp">|</span> Logical OR   <span class="pp">|</span> <span class="in">`=OR(A1&gt;5, B1&lt;10)`</span>  <span class="pp">|</span> <span class="in">`x &gt; 5 | y &lt; 10`</span> <span class="pp">|</span></span>
+<span id="cb5-85"><a href="#cb5-85" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`NOT`</span>        <span class="pp">|</span> Logical NOT  <span class="pp">|</span> <span class="in">`=NOT(A1=5)`</span>        <span class="pp">|</span> <span class="in">`!(x == 5)`</span>      <span class="pp">|</span></span>
 <span id="cb5-86"><a href="#cb5-86" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-87"><a href="#cb5-87" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Function** | **Excel Syntax**         | **R Syntax**                    <span class="pp">|</span></span>
-<span id="cb5-88"><a href="#cb5-88" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------------|--------------------------|---------------------------------|</span></span>
-<span id="cb5-89"><a href="#cb5-89" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Sum          <span class="pp">|</span> <span class="in">`=SUM(A1:A10)`</span>           <span class="pp">|</span> <span class="in">`sum(x)`</span>                        <span class="pp">|</span></span>
-<span id="cb5-90"><a href="#cb5-90" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Average      <span class="pp">|</span> <span class="in">`=AVERAGE(A1:A10)`</span>       <span class="pp">|</span> <span class="in">`mean(x)`</span>                       <span class="pp">|</span></span>
-<span id="cb5-91"><a href="#cb5-91" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Count        <span class="pp">|</span> <span class="in">`=COUNT(A1:A10)`</span>         <span class="pp">|</span> <span class="in">`length(x)`</span> or <span class="in">`sum(!is.na(x))`</span> <span class="pp">|</span></span>
-<span id="cb5-92"><a href="#cb5-92" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Maximum      <span class="pp">|</span> <span class="in">`=MAX(A1:A10)`</span>           <span class="pp">|</span> <span class="in">`max(x)`</span>                        <span class="pp">|</span></span>
-<span id="cb5-93"><a href="#cb5-93" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Minimum      <span class="pp">|</span> <span class="in">`=MIN(A1:A10)`</span>           <span class="pp">|</span> <span class="in">`min(x)`</span>                        <span class="pp">|</span></span>
-<span id="cb5-94"><a href="#cb5-94" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> IF statement <span class="pp">|</span> <span class="in">`=IF(A1&gt;5, "Yes", "No")`</span> <span class="pp">|</span> <span class="in">`ifelse(x &gt; 5, "Yes", "No")`</span>    <span class="pp">|</span></span>
-<span id="cb5-95"><a href="#cb5-95" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-96"><a href="#cb5-96" aria-hidden="true" tabindex="-1"></a><span class="fu">## Text Operators / Functions</span></span>
+<span id="cb5-87"><a href="#cb5-87" aria-hidden="true" tabindex="-1"></a><span class="fu">## Functions (Same Concept, Different Names/Syntax)</span></span>
+<span id="cb5-88"><a href="#cb5-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-89"><a href="#cb5-89" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Function** | **Excel Syntax**         | **R Syntax**                    <span class="pp">|</span></span>
+<span id="cb5-90"><a href="#cb5-90" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------------|--------------------------|---------------------------------|</span></span>
+<span id="cb5-91"><a href="#cb5-91" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Sum          <span class="pp">|</span> <span class="in">`=SUM(A1:A10)`</span>           <span class="pp">|</span> <span class="in">`sum(x)`</span>                        <span class="pp">|</span></span>
+<span id="cb5-92"><a href="#cb5-92" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Average      <span class="pp">|</span> <span class="in">`=AVERAGE(A1:A10)`</span>       <span class="pp">|</span> <span class="in">`mean(x)`</span>                       <span class="pp">|</span></span>
+<span id="cb5-93"><a href="#cb5-93" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Count        <span class="pp">|</span> <span class="in">`=COUNT(A1:A10)`</span>         <span class="pp">|</span> <span class="in">`length(x)`</span> or <span class="in">`sum(!is.na(x))`</span> <span class="pp">|</span></span>
+<span id="cb5-94"><a href="#cb5-94" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Maximum      <span class="pp">|</span> <span class="in">`=MAX(A1:A10)`</span>           <span class="pp">|</span> <span class="in">`max(x)`</span>                        <span class="pp">|</span></span>
+<span id="cb5-95"><a href="#cb5-95" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Minimum      <span class="pp">|</span> <span class="in">`=MIN(A1:A10)`</span>           <span class="pp">|</span> <span class="in">`min(x)`</span>                        <span class="pp">|</span></span>
+<span id="cb5-96"><a href="#cb5-96" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> IF statement <span class="pp">|</span> <span class="in">`=IF(A1&gt;5, "Yes", "No")`</span> <span class="pp">|</span> <span class="in">`ifelse(x &gt; 5, "Yes", "No")`</span>    <span class="pp">|</span></span>
 <span id="cb5-97"><a href="#cb5-97" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-98"><a href="#cb5-98" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Function / Operator** | **Excel Example** | **R Example**                             <span class="pp">|</span></span>
-<span id="cb5-99"><a href="#cb5-99" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------------------|-------------------|---------------------------------|</span></span>
-<span id="cb5-100"><a href="#cb5-100" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Concatenation           <span class="pp">|</span> <span class="in">`=A1 &amp; B1`</span>        <span class="pp">|</span> <span class="in">`paste(x, y, sep = "")`</span> or <span class="in">`paste0(x, y)`</span> <span class="pp">|</span></span>
-<span id="cb5-101"><a href="#cb5-101" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Uppercase               <span class="pp">|</span> <span class="in">`=UPPER(A1)`</span>      <span class="pp">|</span> <span class="in">`toupper(x)`</span>                              <span class="pp">|</span></span>
-<span id="cb5-102"><a href="#cb5-102" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Lowercase               <span class="pp">|</span> <span class="in">`=LOWER(A1)`</span>      <span class="pp">|</span> <span class="in">`tolower(x)`</span>                              <span class="pp">|</span></span>
-<span id="cb5-103"><a href="#cb5-103" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Length of string        <span class="pp">|</span> <span class="in">`=LEN(A1)`</span>        <span class="pp">|</span> <span class="in">`nchar(x)`</span>                                <span class="pp">|</span></span>
-<span id="cb5-104"><a href="#cb5-104" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-105"><a href="#cb5-105" aria-hidden="true" tabindex="-1"></a><span class="fu">## Cell References vs. Variable References</span></span>
+<span id="cb5-98"><a href="#cb5-98" aria-hidden="true" tabindex="-1"></a><span class="fu">## Text Operators / Functions</span></span>
+<span id="cb5-99"><a href="#cb5-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-100"><a href="#cb5-100" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Function / Operator** | **Excel Example** | **R Example** <span class="pp">|</span></span>
+<span id="cb5-101"><a href="#cb5-101" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------------------|-------------------|---------------------------------|</span></span>
+<span id="cb5-102"><a href="#cb5-102" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Concatenation <span class="pp">|</span> <span class="in">`=A1 &amp; B1`</span> <span class="pp">|</span> <span class="in">`paste(x, y, sep = "")`</span> or <span class="in">`paste0(x, y)`</span> <span class="pp">|</span></span>
+<span id="cb5-103"><a href="#cb5-103" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Uppercase <span class="pp">|</span> <span class="in">`=UPPER(A1)`</span> <span class="pp">|</span> <span class="in">`toupper(x)`</span> <span class="pp">|</span></span>
+<span id="cb5-104"><a href="#cb5-104" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Lowercase <span class="pp">|</span> <span class="in">`=LOWER(A1)`</span> <span class="pp">|</span> <span class="in">`tolower(x)`</span> <span class="pp">|</span></span>
+<span id="cb5-105"><a href="#cb5-105" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Length of string <span class="pp">|</span> <span class="in">`=LEN(A1)`</span> <span class="pp">|</span> <span class="in">`nchar(x)`</span> <span class="pp">|</span></span>
 <span id="cb5-106"><a href="#cb5-106" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-107"><a href="#cb5-107" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Concept** | **Excel**   | **R**                                      <span class="pp">|</span></span>
-<span id="cb5-108"><a href="#cb5-108" aria-hidden="true" tabindex="-1"></a><span class="pp">|-------------|-------------|--------------------------------------------|</span></span>
-<span id="cb5-109"><a href="#cb5-109" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Reference   <span class="pp">|</span> <span class="in">`A1`</span>, <span class="in">`A:A`</span> <span class="pp">|</span> ``` df$A<span class="co">[</span><span class="ot">1</span><span class="co">]</span>,``df$A ```                     <span class="pp">|</span></span>
-<span id="cb5-110"><a href="#cb5-110" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Also Ref    <span class="pp">|</span> <span class="in">`A:A`</span>       <span class="pp">|</span> ``` df``<span class="co">[</span><span class="ot">1</span><span class="co">]</span> ``` (Indexing, not quite same) <span class="pp">|</span></span>
+<span id="cb5-107"><a href="#cb5-107" aria-hidden="true" tabindex="-1"></a><span class="fu">## Cell References vs. Variable References</span></span>
+<span id="cb5-108"><a href="#cb5-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-109"><a href="#cb5-109" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Concept** | **Excel**   | **R**                              <span class="pp">|</span></span>
+<span id="cb5-110"><a href="#cb5-110" aria-hidden="true" tabindex="-1"></a><span class="pp">|-------------|-------------|------------------------------------|</span></span>
+<span id="cb5-111"><a href="#cb5-111" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Reference   <span class="pp">|</span> <span class="in">`A1`</span>, <span class="in">`A:A`</span> <span class="pp">|</span> <span class="in">`df$A[1],df$A`</span>                     <span class="pp">|</span></span>
+<span id="cb5-112"><a href="#cb5-112" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Also Ref    <span class="pp">|</span> <span class="in">`A:A`</span>       <span class="pp">|</span> <span class="in">`df[1]`</span> (Indexing, not quite same) <span class="pp">|</span></span>
+<span id="cb5-113"><a href="#cb5-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-114"><a href="#cb5-114" aria-hidden="true" tabindex="-1"></a><span class="fu"># Rstudio Interface</span></span>
+<span id="cb5-115"><a href="#cb5-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-116"><a href="#cb5-116" aria-hidden="true" tabindex="-1"></a>Here is my interface you can see this website Quarto file in the top right field.</span>
+<span id="cb5-117"><a href="#cb5-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-118"><a href="#cb5-118" aria-hidden="true" tabindex="-1"></a><span class="fu">## Upper Right</span></span>
+<span id="cb5-119"><a href="#cb5-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-120"><a href="#cb5-120" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Source/Script Editor (Top-Left):**</span>
+<span id="cb5-121"><a href="#cb5-121" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-122"><a href="#cb5-122" aria-hidden="true" tabindex="-1"></a>    This pane is for writing, editing, and saving R scripts. You can compose multiple lines of code, add comments, and save your work for future use and reproducibility. Commands written here are not executed until you explicitly run them.</span>
+<span id="cb5-123"><a href="#cb5-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-124"><a href="#cb5-124" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/Screenshot 2025-09-19 at 2.01.37 PM.png)</span></span>
+<span id="cb5-125"><a href="#cb5-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-126"><a href="#cb5-126" aria-hidden="true" tabindex="-1"></a><span class="fu">## Upper Left</span></span>
+<span id="cb5-127"><a href="#cb5-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-128"><a href="#cb5-128" aria-hidden="true" tabindex="-1"></a>**Environment/History/Connections/Tutorial :**</span>
+<span id="cb5-129"><a href="#cb5-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-130"><a href="#cb5-130" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>This pane provides insights into your current R session.</span>
+<span id="cb5-131"><a href="#cb5-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-132"><a href="#cb5-132" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>**Environment:** Displays all the objects (datasets, variables, functions, etc.) currently loaded in your R workspace.</span>
+<span id="cb5-133"><a href="#cb5-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-134"><a href="#cb5-134" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>**History:** Keeps a record of the commands you have executed in the console during the current session.</span>
+<span id="cb5-135"><a href="#cb5-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-136"><a href="#cb5-136" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>**Connections:** Allows you to manage connections to external data sources or databases.</span>
+<span id="cb5-137"><a href="#cb5-137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-138"><a href="#cb5-138" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>**Tutorial:** Provides access to interactive tutorials for learning R.</span>
+<span id="cb5-139"><a href="#cb5-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-140"><a href="#cb5-140" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/Screenshot 2025-09-19 at 2.09.45 PM.png)</span></span>
+<span id="cb5-141"><a href="#cb5-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-142"><a href="#cb5-142" aria-hidden="true" tabindex="-1"></a><span class="fu">## Bottom Left</span></span>
+<span id="cb5-143"><a href="#cb5-143" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-144"><a href="#cb5-144" aria-hidden="true" tabindex="-1"></a>**Files/Plots/Packages/Help/Viewer (Bottom-Right):**</span>
+<span id="cb5-145"><a href="#cb5-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-146"><a href="#cb5-146" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>This multifunctional pane offers various tools:</span>
+<span id="cb5-147"><a href="#cb5-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-148"><a href="#cb5-148" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>**Files:** Navigates your file system and manages files and directories within your R project.</span>
+<span id="cb5-149"><a href="#cb5-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-150"><a href="#cb5-150" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>**Plots:** Displays any plots or visualizations generated by your R code.</span>
+<span id="cb5-151"><a href="#cb5-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-152"><a href="#cb5-152" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>**Packages:** Lists installed R packages, allows you to install new ones, and load/unload packages for use.</span>
+<span id="cb5-153"><a href="#cb5-153" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-154"><a href="#cb5-154" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>**Help:** Provides access to R's extensive documentation and help files for functions and packages.</span>
+<span id="cb5-155"><a href="#cb5-155" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-156"><a href="#cb5-156" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>**Viewer:** Used for viewing local web content generated within R, such as interactive plots or Shiny applications.</span>
+<span id="cb5-157"><a href="#cb5-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-158"><a href="#cb5-158" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/Screenshot 2025-09-19 at 2.09.22 PM.png)</span></span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

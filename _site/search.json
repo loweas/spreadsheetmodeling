@@ -49,6 +49,13 @@
     "text": "Import Data\nBefore beginning your data visualization work in R, it’s important to ensure that R can locate and access the data file you want to work with. This typically involves setting the correct file path.\nIn the code below, you’ll need to replace the example file path with the actual path to your file. (MUST DO!)\nFor example, if your file is located on your Desktop in a folder named “ExcelFiles”, and the file is named “restaurant.xlsx”, the full file path might look like:\nOn Windows:\n\"C:/Users/YourName/Desktop/ExcelFiles/restaurant.xlsx\"\nOn Mac:\n\"/Users/YourName/Desktop/ExcelFiles/restaurant.xlsx\"\nBe sure to:\nWhat I would recommend is right click option mac Use forward slashes / instead of backslashes in the file path\nCheck that the file name is spelled correctly and includes the .xlsx extension\nEnsure the file is not open in Excel when R is trying to read it\nOnce you’ve set the correct file path, you can use the readxl package to import the data into R for analysis and visualization.\nIf the readxl package is not already installed on your computer, you’ll need to install it first using install.packages(“readxl”). After it’s installed, you load the package with library(readxl).\n\n# Fix the below script to find file you downloaded from Lamaku\n\n#restaurants &lt;- read_excel(\"~/Chapter 03/restaurant.xlsx\")\nhead(restaurants)\n\n# A tibble: 6 × 4\n  Restaurant `Quality Rating` `Meal Price ($)` `Wait Time (min)`\n       &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt;             &lt;dbl&gt;\n1          1 Good                           18                 5\n2          2 Very Good                      22                 6\n3          3 Good                           28                 1\n4          4 Excellent                      38                74\n5          5 Very Good                      33                 6\n6          6 Good                           28                 5"
   },
   {
+    "objectID": "datavis.html#another-importing-data",
+    "href": "datavis.html#another-importing-data",
+    "title": "Spreadsheet Modeling",
+    "section": "Another Importing Data",
+    "text": "Another Importing Data\nFiles (Bottom-Right):\nGo through the folder path to where the data is and click on the data to reveal the import option.\n\nThen the following screen will pop up.\n\nImport the data and you will notice the code needed will run in the console. Which you can copy and paste for later or at least take note of because it will show you what the manual code should have looked at."
+  },
+  {
     "objectID": "datavis.html#graphs",
     "href": "datavis.html#graphs",
     "title": "Spreadsheet Modeling",
@@ -109,48 +116,76 @@
     "href": "index.html",
     "title": "Spreadsheet Modeling",
     "section": "",
-    "text": "We will begin by downloading R and setting up RStudio, followed by practicing simple commands that mirror tasks we previously performed in Excel, such as basic calculations, summaries, and data viewing. We will then transition back to Excel into foundational statistical modeling by starting our exploration of linear regression.\nThe basics of using R, a powerful tool for data analysis and visualization. The goal is to ensure that by the end of the session, every student has R and RStudio successfully installed and can run simple commands confidently."
+    "text": "We will begin by downloading R and setting up RStudio, followed by practicing simple commands that mirror tasks we previously performed in Excel, such as basic calculations, summaries, and data viewing. We will then transition back to Excel into foundational statistical modeling by starting our exploration of linear regression.\nThis site has some cool educational sources for using R. The goal is to ensure that by the end of the session, every student has R and RStudio successfully installed and can run simple commands confidently.\nWhy have you learn this when were using Execl? Because everything your learning in excel is transferable to other data visual programs and though I donʻ t want to make R a large portion of the class just having experience in R is a resume builder.\n\n\n\nThe biggest difference between R and Excel is where you conduct your formula commands and the manipulation of the data in the Cell.\nInstead of working in the formula bar in excel:\n\nYou work in the console. Instead of being able to work within a cell within a sheet (like we do in Excel) all of the commands and manipulation are conducted in the console.\n\nMany functional characters and operators used in Excel also appear in R, often serving similar roles in formulas and expressions. Below is a comparison table of some commonly used functional characters/operators in both:\n\n\n\n\n\n\n\n\n\nOperator\nFunction\nExcel Example\nR Example\n\n\n+\nAddition\n=A1 + B1\nx + y\n\n\n-\nSubtraction\n=A1 - B1\nx - y\n\n\n*\nMultiplication\n=A1 * B1\nx * y\n\n\n/\nDivision\n=A1 / B1\nx / y\n\n\n^\nExponentiation\n=A1 ^ 2\nx ^ 2\n\n\n\nExamples:\n\n1 + 1\n\n[1] 2\n\n\n\n2 * 2\n\n[1] 4\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nOperator\nFunction\nExcel Example\nR Example\n\n\n\n\n=\nEquality\n=A1=5\nx == 5\n\n\n&lt;&gt;\nNot equal\n=A1&lt;&gt;5\nx != 5\n\n\n&lt;\nLess than\n=A1&lt;5\nx &lt; 5\n\n\n&lt;=\nLess than or equal\n=A1&lt;=5\nx &lt;= 5\n\n\n&gt;\nGreater than\n=A1&gt;5\nx &gt; 5\n\n\n&gt;=\nGreater than or equal\n=A1&gt;=5\nx &gt;= 5\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nOperator\nFunction\nExcel Example\nR Example\n\n\nAND\nLogical AND\n=AND(A1&gt;5, B1&lt;10)\nx &gt; 5 & y &lt; 10\n\n\nOR\nLogical OR\n=OR(A1&gt;5, B1&lt;10)\nx &gt; 5 | y &lt; 10\n\n\nNOT\nLogical NOT\n=NOT(A1=5)\n!(x == 5)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFunction\nExcel Syntax\nR Syntax\n\n\n\n\nSum\n=SUM(A1:A10)\nsum(x)\n\n\nAverage\n=AVERAGE(A1:A10)\nmean(x)\n\n\nCount\n=COUNT(A1:A10)\nlength(x) or sum(!is.na(x))\n\n\nMaximum\n=MAX(A1:A10)\nmax(x)\n\n\nMinimum\n=MIN(A1:A10)\nmin(x)\n\n\nIF statement\n=IF(A1&gt;5, \"Yes\", \"No\")\nifelse(x &gt; 5, \"Yes\", \"No\")\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFunction / Operator\nExcel Example\nR Example\n\n\n\n\nConcatenation\n=A1 & B1\npaste(x, y, sep = \"\") or paste0(x, y)\n\n\nUppercase\n=UPPER(A1)\ntoupper(x)\n\n\nLowercase\n=LOWER(A1)\ntolower(x)\n\n\nLength of string\n=LEN(A1)\nnchar(x)\n\n\n\n\n\n\n\n\n\nConcept\nExcel\nR\n\n\n\n\nReference\nA1, A:A\ndf$A[1],df$A\n\n\nAlso Ref\nA:A\ndf[1] (Indexing, not quite same)"
   },
   {
     "objectID": "index.html#downloading-r",
     "href": "index.html#downloading-r",
     "title": "Spreadsheet Modeling",
     "section": "",
-    "text": "We will begin by downloading R and setting up RStudio, followed by practicing simple commands that mirror tasks we previously performed in Excel, such as basic calculations, summaries, and data viewing. We will then transition back to Excel into foundational statistical modeling by starting our exploration of linear regression.\nThe basics of using R, a powerful tool for data analysis and visualization. The goal is to ensure that by the end of the session, every student has R and RStudio successfully installed and can run simple commands confidently."
+    "text": "We will begin by downloading R and setting up RStudio, followed by practicing simple commands that mirror tasks we previously performed in Excel, such as basic calculations, summaries, and data viewing. We will then transition back to Excel into foundational statistical modeling by starting our exploration of linear regression.\nThis site has some cool educational sources for using R. The goal is to ensure that by the end of the session, every student has R and RStudio successfully installed and can run simple commands confidently.\nWhy have you learn this when were using Execl? Because everything your learning in excel is transferable to other data visual programs and though I donʻ t want to make R a large portion of the class just having experience in R is a resume builder."
+  },
+  {
+    "objectID": "index.html#basics",
+    "href": "index.html#basics",
+    "title": "Spreadsheet Modeling",
+    "section": "",
+    "text": "The biggest difference between R and Excel is where you conduct your formula commands and the manipulation of the data in the Cell.\nInstead of working in the formula bar in excel:\n\nYou work in the console. Instead of being able to work within a cell within a sheet (like we do in Excel) all of the commands and manipulation are conducted in the console.\n\nMany functional characters and operators used in Excel also appear in R, often serving similar roles in formulas and expressions. Below is a comparison table of some commonly used functional characters/operators in both:\n\n\n\n\n\n\n\n\n\nOperator\nFunction\nExcel Example\nR Example\n\n\n+\nAddition\n=A1 + B1\nx + y\n\n\n-\nSubtraction\n=A1 - B1\nx - y\n\n\n*\nMultiplication\n=A1 * B1\nx * y\n\n\n/\nDivision\n=A1 / B1\nx / y\n\n\n^\nExponentiation\n=A1 ^ 2\nx ^ 2\n\n\n\nExamples:\n\n1 + 1\n\n[1] 2\n\n\n\n2 * 2\n\n[1] 4"
   },
   {
     "objectID": "index.html#comparison-operators",
     "href": "index.html#comparison-operators",
     "title": "Spreadsheet Modeling",
-    "section": "Comparison Operators",
-    "text": "Comparison Operators\n\n\n\n\n\n\n\n\n\nOperator\nFunction\nExcel Example\nR Example\n\n\n\n\n=\nEquality\n=A1=5\nx == 5\n\n\n&lt;&gt;\nNot equal\n=A1&lt;&gt;5\nx != 5\n\n\n&lt;\nLess than\n=A1&lt;5\nx &lt; 5\n\n\n&lt;=\nLess than or equal\n=A1&lt;=5\nx &lt;= 5\n\n\n&gt;\nGreater than\n=A1&gt;5\nx &gt; 5\n\n\n&gt;=\nGreater than or equal\n=A1&gt;=5\nx &gt;= 5"
+    "section": "",
+    "text": "Operator\nFunction\nExcel Example\nR Example\n\n\n\n\n=\nEquality\n=A1=5\nx == 5\n\n\n&lt;&gt;\nNot equal\n=A1&lt;&gt;5\nx != 5\n\n\n&lt;\nLess than\n=A1&lt;5\nx &lt; 5\n\n\n&lt;=\nLess than or equal\n=A1&lt;=5\nx &lt;= 5\n\n\n&gt;\nGreater than\n=A1&gt;5\nx &gt; 5\n\n\n&gt;=\nGreater than or equal\n=A1&gt;=5\nx &gt;= 5"
   },
   {
     "objectID": "index.html#logical-operators",
     "href": "index.html#logical-operators",
     "title": "Spreadsheet Modeling",
-    "section": "Logical Operators",
-    "text": "Logical Operators\n\n\n\n\n\n\n\n\n\nOperator\nFunction\nExcel Example\nR Example\n\n\nAND\nLogical AND\n=AND(A1&gt;5, B1&lt;10)\nx &gt; 5 & y &lt; 10\n\n\nOR\nLogical OR\n=OR(A1&gt;5, B1&lt;10)\nx &gt; 5 | y &lt; 10\n\n\nNOT\nLogical NOT\n=NOT(A1=5)\n!(x == 5)"
+    "section": "",
+    "text": "Operator\nFunction\nExcel Example\nR Example\n\n\nAND\nLogical AND\n=AND(A1&gt;5, B1&lt;10)\nx &gt; 5 & y &lt; 10\n\n\nOR\nLogical OR\n=OR(A1&gt;5, B1&lt;10)\nx &gt; 5 | y &lt; 10\n\n\nNOT\nLogical NOT\n=NOT(A1=5)\n!(x == 5)"
   },
   {
     "objectID": "index.html#functions-same-concept-different-namessyntax",
     "href": "index.html#functions-same-concept-different-namessyntax",
     "title": "Spreadsheet Modeling",
-    "section": "Functions (Same Concept, Different Names/Syntax)",
-    "text": "Functions (Same Concept, Different Names/Syntax)\n\n\n\n\n\n\n\n\nFunction\nExcel Syntax\nR Syntax\n\n\n\n\nSum\n=SUM(A1:A10)\nsum(x)\n\n\nAverage\n=AVERAGE(A1:A10)\nmean(x)\n\n\nCount\n=COUNT(A1:A10)\nlength(x) or sum(!is.na(x))\n\n\nMaximum\n=MAX(A1:A10)\nmax(x)\n\n\nMinimum\n=MIN(A1:A10)\nmin(x)\n\n\nIF statement\n=IF(A1&gt;5, \"Yes\", \"No\")\nifelse(x &gt; 5, \"Yes\", \"No\")"
+    "section": "",
+    "text": "Function\nExcel Syntax\nR Syntax\n\n\n\n\nSum\n=SUM(A1:A10)\nsum(x)\n\n\nAverage\n=AVERAGE(A1:A10)\nmean(x)\n\n\nCount\n=COUNT(A1:A10)\nlength(x) or sum(!is.na(x))\n\n\nMaximum\n=MAX(A1:A10)\nmax(x)\n\n\nMinimum\n=MIN(A1:A10)\nmin(x)\n\n\nIF statement\n=IF(A1&gt;5, \"Yes\", \"No\")\nifelse(x &gt; 5, \"Yes\", \"No\")"
   },
   {
     "objectID": "index.html#text-operators-functions",
     "href": "index.html#text-operators-functions",
     "title": "Spreadsheet Modeling",
-    "section": "Text Operators / Functions",
-    "text": "Text Operators / Functions\n\n\n\n\n\n\n\n\nFunction / Operator\nExcel Example\nR Example\n\n\n\n\nConcatenation\n=A1 & B1\npaste(x, y, sep = \"\") or paste0(x, y)\n\n\nUppercase\n=UPPER(A1)\ntoupper(x)\n\n\nLowercase\n=LOWER(A1)\ntolower(x)\n\n\nLength of string\n=LEN(A1)\nnchar(x)"
+    "section": "",
+    "text": "Function / Operator\nExcel Example\nR Example\n\n\n\n\nConcatenation\n=A1 & B1\npaste(x, y, sep = \"\") or paste0(x, y)\n\n\nUppercase\n=UPPER(A1)\ntoupper(x)\n\n\nLowercase\n=LOWER(A1)\ntolower(x)\n\n\nLength of string\n=LEN(A1)\nnchar(x)"
   },
   {
     "objectID": "index.html#cell-references-vs.-variable-references",
     "href": "index.html#cell-references-vs.-variable-references",
     "title": "Spreadsheet Modeling",
-    "section": "Cell References vs. Variable References",
-    "text": "Cell References vs. Variable References\n\n\n\n\n\n\n\n\nConcept\nExcel\nR\n\n\n\n\nReference\nA1, A:A\ndf$A[1],``df$A\n\n\nAlso Ref\nA:A\ndf``[1] (Indexing, not quite same)"
+    "section": "",
+    "text": "Concept\nExcel\nR\n\n\n\n\nReference\nA1, A:A\ndf$A[1],df$A\n\n\nAlso Ref\nA:A\ndf[1] (Indexing, not quite same)"
+  },
+  {
+    "objectID": "index.html#upper-right",
+    "href": "index.html#upper-right",
+    "title": "Spreadsheet Modeling",
+    "section": "Upper Right",
+    "text": "Upper Right\n\nSource/Script Editor (Top-Left):\nThis pane is for writing, editing, and saving R scripts. You can compose multiple lines of code, add comments, and save your work for future use and reproducibility. Commands written here are not executed until you explicitly run them."
+  },
+  {
+    "objectID": "index.html#upper-left",
+    "href": "index.html#upper-left",
+    "title": "Spreadsheet Modeling",
+    "section": "Upper Left",
+    "text": "Upper Left\nEnvironment/History/Connections/Tutorial :\n\nThis pane provides insights into your current R session.\n\nEnvironment: Displays all the objects (datasets, variables, functions, etc.) currently loaded in your R workspace.\nHistory: Keeps a record of the commands you have executed in the console during the current session.\nConnections: Allows you to manage connections to external data sources or databases.\nTutorial: Provides access to interactive tutorials for learning R."
+  },
+  {
+    "objectID": "index.html#bottom-left",
+    "href": "index.html#bottom-left",
+    "title": "Spreadsheet Modeling",
+    "section": "Bottom Left",
+    "text": "Bottom Left\nFiles/Plots/Packages/Help/Viewer (Bottom-Right):\n\nThis multifunctional pane offers various tools:\n\nFiles: Navigates your file system and manages files and directories within your R project.\nPlots: Displays any plots or visualizations generated by your R code.\nPackages: Lists installed R packages, allows you to install new ones, and load/unload packages for use.\nHelp: Provides access to R’s extensive documentation and help files for functions and packages.\nViewer: Used for viewing local web content generated within R, such as interactive plots or Shiny applications."
   }
 ]
