@@ -2,12 +2,175 @@
 title: "Linear Regression & Time Series"
 format: html
 editor: visual
+bibliography: references.bib
 ---
 
-## This page will populate after:
+# Simple Linear Regression
 
-1.  Finishing Data Vis
-2.  Midterm
-3.  Linear Regression in Excel
+This simple example will cover the same one we covered in class. It is a famous example
 
-![](https://media2.giphy.com/media/v1.Y2lkPTZjMDliOTUycTkzcWNiNjczdmQ2Z2JqeWR5ZHYzMWhucmVpZHMyOXkweGd2dmdyMSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/um2kBnfo55iW4ZH1Fa/giphy-downsized.gif){alt="Waiting For An Answer GIFs - Find & Share on GIPHY"}
+A simple regression model is
+
+$$y=\beta_0+\beta_1x+u$$
+
+$y$ is the dependent variable, the one we want to explain or predict $x$ is independent variable (regressor), the one we use to explain or predict $y$ $u$ is error term representing unobserved other factors that affect y $β_0$ is intercept term (constant term) $β_1$ is slope coefficient.
+
+We will cover a basic example in linear regression which reproduces a well known example of the wage pay gap. This example can be found in
+
+[*Introductory Econometrics: A Modern Approach, 7e* by Jeffrey M. Wooldridge.](https://cbpbu.ac.in/userfiles/file/2020/STUDY_MAT/ECO/2.pdf) [@wooldridge2013]
+
+![](images/download.jpg)
+
+This is a great resource and textbook for those in economics and interested in regressional analysis!
+
+This is a finding that is more of interest to the broader field of economics than our focus of valuing nature. However, I find this is really helpful to illustrate the power of regression analysis and what the they can tell us about the world.
+
+Each example illustrates how to load data, build econometric models, and compute estimates with R.
+
+Lets Begin Install and load the `wooldridge` package and lets get started!
+
+```{r}
+#install.packages("wooldridge")
+library(wooldridge)
+
+```
+
+### Wage Example OLS model
+
+Load the `wage1` data and check out the documentation.
+
+```{r}
+data("wage1")
+
+?wage1
+```
+
+The documentation indicates these are data from the 1976 Current Population Survey, collected by Henry Farber when he and Wooldridge were colleagues at MIT in 1988.
+
+educ: years of education
+
+wage: average hourly earnings
+
+lwage: log of the average hourly earnings
+
+First, make a scatter-plot of the two variables and look for possible patterns in the relationship between them.
+
+```{r}
+plot(wage1$educ, wage1$wage)
+```
+
+It appears that ***on average***, more years of education, leads to higher wages.
+
+#### Level
+
+First lets look at how education impacts wages.
+
+```{r}
+summary(lm(wage ~ educ, data = wage1))
+
+```
+
+This example shows use the direct level of changes in wages. Interpret the coefficient. The issue that can arise with using the level of wages is that this data set corresponds to data from the \~50 years ago. Inflation has occurred, wages have gone up. It would be more appropriate to look the percentage change in wages based on the level of education.
+
+#### Percentage
+
+The example in the text is interested in the *return to another year of education*, or what the ***percentage*** change in wages one might expect for each additional year of education. To do so, one must use the log(`wage`). This has already been computed in the data set and is defined as `lwage`.
+
+Build a linear model to estimate the relationship between the *log of wage* (`lwage`) and *education* (`educ`).
+
+$$\hat{log(wage)}=𝛽_0+𝛽_1𝑒𝑑𝑢𝑐$$
+
+```{r}
+log_wage_model <- lm(lwage ~ educ, data = wage1)
+```
+
+Print the `summary` of the results.
+
+```{r}
+summary(log_wage_model)
+```
+
+# Multiple Regression Analysis: Estimation
+
+Check the documentation for variable information
+
+Interpret the coefficient. What does
+
+```{r}
+?wage1
+```
+
+lwage: log of the average hourly earnings
+
+educ: years of education
+
+exper: years of potential experience
+
+tenure: years with current employer
+
+Plot the variables against `lwage` and compare their distributions and slope (𝛽) of the simple regression lines.
+
+```{r}
+# Set up 3 plots in one row
+par(mfrow = c(1, 4))
+
+# 1. Wage vs Education
+plot(wage1$educ, wage1$lwage,
+     main = "Wage vs Education",
+     xlab = "Years of Education",
+     ylab = "Log(Wage)",
+     pch = 19, col = "blue")
+abline(lm(lwage ~ educ, data = wage1), col = "red", lwd = 2)
+
+# 2. Wage vs Experience
+plot(wage1$exper, wage1$lwage,
+     main = "Wage vs Experience",
+     xlab = "Years of Experience",
+     ylab = "",  # omit y-axis label to avoid clutter
+     pch = 19, col = "darkgreen")
+abline(lm(lwage ~ exper, data = wage1), col = "red", lwd = 2)
+
+# 3. Wage vs Tenure
+plot(wage1$tenure, wage1$lwage,
+     main = "Wage vs Tenure",
+     xlab = "Years with Employer (Tenure)",
+     ylab = "",  # omit y-axis label to avoid clutter
+     pch = 19, col = "purple")
+abline(lm(lwage ~ tenure, data = wage1), col = "red", lwd = 2)
+
+# 3. Wage vs Female
+plot(wage1$female, wage1$lwage,
+     main = "Wage vs Female",
+     xlab = "Binary Indicator",
+     ylab = "",  # omit y-axis label to avoid clutter
+     pch = 19, col = "pink")
+abline(lm(lwage ~ female, data = wage1), col = "red", lwd = 2)
+
+
+# Reset plotting layout back to 1 plot
+par(mfrow = c(1, 1))
+
+```
+
+Estimate the model regressing educ, exper, tenure and female against log(wage).
+
+$$\hat{log(wage)}=\beta_0+\beta_1educ+\beta_3exper+\beta_4exper^2+\beta_5tenure+\beta_6tenure^2+\beta_7female$$
+
+```{r}
+hourly_wage_model <- lm(wage ~ educ + exper+expersq + tenure +tenursq+female, data = wage1)
+```
+
+Plot the coefficients, representing percentage impact of each variable on log(wage) for a quick comparison.
+
+```{r}
+coefficients(hourly_wage_model)
+```
+
+Print the estimated model coefficients:
+
+```{r}
+barplot(coefficients(hourly_wage_model))
+
+```
+
+# 
