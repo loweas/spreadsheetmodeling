@@ -93,12 +93,12 @@ Examples:
 
 ## Text Operators / Functions
 
-| **Function / Operator** | **Excel Example** | **R Example** |
-|--------------------|-------------------|---------------------------------|
-| Concatenation | `=A1 & B1` | `paste(x, y, sep = "")` or `paste0(x, y)` |
-| Uppercase | `=UPPER(A1)` | `toupper(x)` |
-| Lowercase | `=LOWER(A1)` | `tolower(x)` |
-| Length of string | `=LEN(A1)` | `nchar(x)` |
+| **Function / Operator** | **Excel Example** | **R Example**                             |
+|-------------------------|-------------------|-------------------------------------------|
+| Concatenation           | `=A1 & B1`        | `paste(x, y, sep = "")` or `paste0(x, y)` |
+| Uppercase               | `=UPPER(A1)`      | `toupper(x)`                              |
+| Lowercase               | `=LOWER(A1)`      | `tolower(x)`                              |
+| Length of string        | `=LEN(A1)`        | `nchar(x)`                                |
 
 ## Cell References vs. Variable References
 
@@ -117,7 +117,7 @@ Here is my interface you can see this website Quarto file in the top right field
 
     This pane is for writing, editing, and saving R scripts. You can compose multiple lines of code, add comments, and save your work for future use and reproducibility. Commands written here are not executed until you explicitly run them.
 
-![](images/Screenshot 2025-09-19 at 2.01.37 PM.png)
+![](images/Screenshot%202025-09-19%20at%202.01.37%20PM.png)
 
 ## Upper Left
 
@@ -133,7 +133,7 @@ Here is my interface you can see this website Quarto file in the top right field
 
     -   **Tutorial:** Provides access to interactive tutorials for learning R.
 
-![](images/Screenshot 2025-09-19 at 2.09.45 PM.png)
+![](images/Screenshot%202025-09-19%20at%202.09.45%20PM.png)
 
 ## Bottom Left
 
@@ -151,4 +151,4 @@ Here is my interface you can see this website Quarto file in the top right field
 
     -   **Viewer:** Used for viewing local web content generated within R, such as interactive plots or Shiny applications.
 
-![](images/Screenshot 2025-09-19 at 2.09.22 PM.png)
+![](images/Screenshot%202025-09-19%20at%202.09.22%20PM.png)

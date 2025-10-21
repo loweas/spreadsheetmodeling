@@ -13,6 +13,8 @@ website:
         text: DataVisualization
       - href: lr.qmd
         text: LinearRegression
+      - href: ts.qmd
+        text: TimesSeries
       - href: lo.qmd
         text: LinearOptimization
     tools:

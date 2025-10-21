@@ -1,0 +1,144 @@
+---
+title: "Time Series"
+author: "LoweMackenzie"
+date: 2024-10-20
+
+
+format:
+  html:
+    code-fold: false        # Enables dropdown for code
+    code-tools: true       # (Optional) Adds buttons like "Show Code"
+    code-summary: "Show code"  # (Optional) Custom label for dropdown
+    toc: true
+    toc-location: left
+    page-layout: full
+editor: visual
+---
+
+## 
+
+# Times Series Example
+
+We will use this page to cover the example we did in class.
+
+## Libraries
+
+First load these libraries. *Remove hashtag before install.package to load library.*
+
+```{r}
+# Install the forecast package if not already installed
+#install.packages("forecast")
+#install.packages("zoo")  # Only run if not already installed
+library(zoo)
+# Load the package
+library(forecast)
+
+library(ggplot2)
+```
+
+## Data
+
+And the following data *Remember to switch the directory as this one is specific to my computer!*
+
+```{r}
+
+library(readxl)
+croptimeseries<- read_excel("/Users/ashleylowe/Desktop/SpreadsheetModeling429/2025/In-class/croptimeseries.xlsx")
+
+```
+
+## In - Class Example
+
+### Create Variable
+
+1.  First make a variable that shows production by land used
+
+    ```{r}
+    croptimeseries$production_byland=croptimeseries$`Production (million bushels)`/croptimeseries$`Planted area (million acres)`
+    ```
+
+    ### Exponential Smoothing
+
+```{=html}
+<!-- -->
+```
+2.  Use the created variable to predict a exponential smoothing with a damping value of .9 & 1
+
+```{r}
+
+# Ensure your variable is a time series object
+# Replace the frequency and start values as needed
+ts_data <- ts(croptimeseries$production_byland, frequency = 1)
+
+# Exponential smoothing with damping value = 0.9
+model_damped_09 <- ets(ts_data, model = "AAN", damped = TRUE, phi = 0.9)
+forecast_damped_09 <- forecast(model_damped_09)
+
+# Exponential smoothing with damping value = 1.0 (equivalent to no damping)
+model_damped_1 <- ets(ts_data, model = "AAN", damped = FALSE)
+forecast_damped_1 <- forecast(model_damped_1)
+
+
+# Get fitted values (same length as original data)
+fitted_09 <- fitted(model_damped_09)
+fitted_1 <- fitted(model_damped_1)
+
+# Add to original data frame
+croptimeseries$fit_damped_09 <- as.numeric(fitted_09)
+croptimeseries$fit_damped_1 <- as.numeric(fitted_1)
+
+```
+
+### Moving Average
+
+3.  Create a moving average using the interval of a decade.
+
+    Explanation
+
+    -   `k = 10` --- the window size (10 years)
+
+    -   `fill = NA` --- pads the beginning with `NA` so the result matches the length of your original series.
+
+    -   `align = "right"` --- the moving average is assigned to the **last year** of each 10-year window.
+
+```{r}
+
+# Apply 10-year (decade) moving average
+croptimeseries$ma_10yr <- zoo::rollmean(croptimeseries$production_byland, 
+                                        k = 10, 
+                                        fill = NA, 
+                                        align = "right")
+
+```
+
+### Line Graph
+
+4.  Create a line graph that including your production by land (1), the exponential smoothing (2) and the moving average (3)
+
+```{r}
+
+
+ggplot(croptimeseries, aes(x = Year)) +  # replace 'year' if your time column is named differently
+  geom_line(aes(y = production_byland, color = "Original"), size = 1) +
+  geom_line(aes(y = fit_damped_09, color = "Exponential Smoothing"), size = 1, linetype = "dashed") +
+  geom_line(aes(y = ma_10yr, color = "10-Year Moving Average"), size = 1, linetype = "dotdash") +
+  labs(title = "Production by Land with Exponential Smoothing and 10-Year Moving Average",
+       x = "Year",
+       y = "Production",
+       color = "Legend") +
+  theme_minimal()
+```
+
+### MFE Calculation
+
+```{r}
+
+mean( croptimeseries$production_byland- croptimeseries$fit_damped_09, na.rm = TRUE)
+
+mean(croptimeseries$production_byland - croptimeseries$fit_damped_1 , na.rm = TRUE)
+
+mean( croptimeseries$production_byland - croptimeseries$ma_10yr , na.rm = TRUE)
+
+
+
+```
