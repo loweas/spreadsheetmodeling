@@ -28,8 +28,6 @@ First load these libraries. *Remove hashtag before install.package to load libra
 ```{r}
 # Install the forecast package if not already installed
 #install.packages("forecast")
-#install.packages("zoo")  # Only run if not already installed
-library(zoo)
 # Load the package
 library(forecast)
 
@@ -62,7 +60,11 @@ croptimeseries<- read_excel("/Users/ashleylowe/Desktop/SpreadsheetModeling429/20
 ```{=html}
 <!-- -->
 ```
-2.  Use the created variable to predict a exponential smoothing with a damping value of .9 & 1
+2.  Use the created variable to predict a exponential smoothing with a damping value of .9. **(we will ignore .1 for this example)**
+
+Because **R\'s `ets()` function is designed to automatically optimize and validate model parameters** --- and it will **reject combinations** (like `AAN` with `phi = 0.1`) that it determines are **unstable or inappropriate** for your data.
+
+In contrast, **Excel doesn't optimize or reject your model**. It simply applies the formula, even if it results in poor or unstable forecasts.
 
 ```{r}
 
@@ -74,14 +76,10 @@ ts_data <- ts(croptimeseries$production_byland, frequency = 1)
 model_damped_09 <- ets(ts_data, model = "AAN", damped = TRUE, phi = 0.9)
 forecast_damped_09 <- forecast(model_damped_09)
 
-# Exponential smoothing with damping value = 1.0 (equivalent to no damping)
-model_damped_1 <- ets(ts_data, model = "AAN", damped = FALSE)
-forecast_damped_1 <- forecast(model_damped_1)
-
 
 # Get fitted values (same length as original data)
-fitted_09 <- fitted(model_damped_09)
-fitted_1 <- fitted(model_damped_1)
+croptimeseries$fit_damped_09 <- as.numeric(fitted(model_damped_09))
+croptimeseries$fit_damped_1  <- as.numeric(fitted(model_damped_1))
 
 # Add to original data frame
 croptimeseries$fit_damped_09 <- as.numeric(fitted_09)
@@ -95,19 +93,12 @@ croptimeseries$fit_damped_1 <- as.numeric(fitted_1)
 
     Explanation
 
-    -   `k = 10` --- the window size (10 years)
-
-    -   `fill = NA` --- pads the beginning with `NA` so the result matches the length of your original series.
-
-    -   `align = "right"` --- the moving average is assigned to the **last year** of each 10-year window.
+    -   `order = 10` --- the window size (10 years)
 
 ```{r}
 
 # Apply 10-year (decade) moving average
-croptimeseries$ma_10yr <- zoo::rollmean(croptimeseries$production_byland, 
-                                        k = 10, 
-                                        fill = NA, 
-                                        align = "right")
+croptimeseries$ma_10yr <- ma(ts_data, order = 10)
 
 ```
 
@@ -118,9 +109,10 @@ croptimeseries$ma_10yr <- zoo::rollmean(croptimeseries$production_byland,
 ```{r}
 
 
-ggplot(croptimeseries, aes(x = Year)) +  # replace 'year' if your time column is named differently
+ggplot(croptimeseries, aes(x = Year)) +  # Make sure 'Year' exists and is correct
   geom_line(aes(y = production_byland, color = "Original"), size = 1) +
-  geom_line(aes(y = fit_damped_09, color = "Exponential Smoothing"), size = 1, linetype = "dashed") +
+  geom_line(aes(y = fit_damped_09, color = "Exp. Smoothing (0.9)"), size = 1, linetype = "dashed") +
+  geom_line(aes(y = fit_damped_1, color = "Exp. Smoothing (1.0)"), size = 1, linetype = "dotted") +
   geom_line(aes(y = ma_10yr, color = "10-Year Moving Average"), size = 1, linetype = "dotdash") +
   labs(title = "Production by Land with Exponential Smoothing and 10-Year Moving Average",
        x = "Year",
