@@ -141,6 +141,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">LinearRegression</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="./ts.html"> 
+<span class="menu-text">TimesSeries</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="./lo.html"> 
 <span class="menu-text">LinearOptimization</span></a>
   </li>  
@@ -607,7 +611,7 @@ Attaching package: 'dplyr'</code></pre>
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/loweas\.github\.io\/spreadsheetmodeling\/");
+        var filterRegex = new RegExp('/' + window.location.host + '/');
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

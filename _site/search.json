@@ -105,6 +105,27 @@
     "text": "Correlation\n\ncor(restaurants$`Meal Price ($)`, restaurants$`Wait Time (min)`,)\n\n[1] 0.4628228"
   },
   {
+    "objectID": "ts.html#libraries",
+    "href": "ts.html#libraries",
+    "title": "Time Series",
+    "section": "Libraries",
+    "text": "Libraries\nFirst load these libraries. Remove hashtag before install.package to load library.\n\n# Install the forecast package if not already installed\n#install.packages(\"forecast\")\n#install.packages(\"zoo\")  # Only run if not already installed\nlibrary(zoo)\n\n\nAttaching package: 'zoo'\n\n\nThe following objects are masked from 'package:base':\n\n    as.Date, as.Date.numeric\n\n# Load the package\nlibrary(forecast)\n\nWarning: package 'forecast' was built under R version 4.3.3\n\n\nRegistered S3 method overwritten by 'quantmod':\n  method            from\n  as.zoo.data.frame zoo \n\nlibrary(ggplot2)\n\nWarning: package 'ggplot2' was built under R version 4.3.3"
+  },
+  {
+    "objectID": "ts.html#data",
+    "href": "ts.html#data",
+    "title": "Time Series",
+    "section": "Data",
+    "text": "Data\nAnd the following data Remember to switch the directory as this one is specific to my computer!\n\nlibrary(readxl)\ncroptimeseries&lt;- read_excel(\"/Users/ashleylowe/Desktop/SpreadsheetModeling429/2025/In-class/croptimeseries.xlsx\")"
+  },
+  {
+    "objectID": "ts.html#in---class-example",
+    "href": "ts.html#in---class-example",
+    "title": "Time Series",
+    "section": "In - Class Example",
+    "text": "In - Class Example\n\nCreate Variable\n\nFirst make a variable that shows production by land used\n\ncroptimeseries$production_byland=croptimeseries$`Production (million bushels)`/croptimeseries$`Planted area (million acres)`\n\nExponential Smoothing\n\n\n\nUse the created variable to predict a exponential smoothing with a damping value of .9 & 1\n\n\n# Ensure your variable is a time series object\n# Replace the frequency and start values as needed\nts_data &lt;- ts(croptimeseries$production_byland, frequency = 1)\n\n# Exponential smoothing with damping value = 0.9\nmodel_damped_09 &lt;- ets(ts_data, model = \"AAN\", damped = TRUE, phi = 0.9)\nforecast_damped_09 &lt;- forecast(model_damped_09)\n\n# Exponential smoothing with damping value = 1.0 (equivalent to no damping)\nmodel_damped_1 &lt;- ets(ts_data, model = \"AAN\", damped = FALSE)\nforecast_damped_1 &lt;- forecast(model_damped_1)\n\n\n# Get fitted values (same length as original data)\nfitted_09 &lt;- fitted(model_damped_09)\nfitted_1 &lt;- fitted(model_damped_1)\n\n# Add to original data frame\ncroptimeseries$fit_damped_09 &lt;- as.numeric(fitted_09)\ncroptimeseries$fit_damped_1 &lt;- as.numeric(fitted_1)\n\n\n\nMoving Average\n\nCreate a moving average using the interval of a decade.\nExplanation\n\nk = 10 — the window size (10 years)\nfill = NA — pads the beginning with NA so the result matches the length of your original series.\nalign = \"right\" — the moving average is assigned to the last year of each 10-year window.\n\n\n\n# Apply 10-year (decade) moving average\ncroptimeseries$ma_10yr &lt;- zoo::rollmean(croptimeseries$production_byland, \n                                        k = 10, \n                                        fill = NA, \n                                        align = \"right\")\n\n\n\nLine Graph\n\nCreate a line graph that including your production by land (1), the exponential smoothing (2) and the moving average (3)\n\n\nggplot(croptimeseries, aes(x = Year)) +  # replace 'year' if your time column is named differently\n  geom_line(aes(y = production_byland, color = \"Original\"), size = 1) +\n  geom_line(aes(y = fit_damped_09, color = \"Exponential Smoothing\"), size = 1, linetype = \"dashed\") +\n  geom_line(aes(y = ma_10yr, color = \"10-Year Moving Average\"), size = 1, linetype = \"dotdash\") +\n  labs(title = \"Production by Land with Exponential Smoothing and 10-Year Moving Average\",\n       x = \"Year\",\n       y = \"Production\",\n       color = \"Legend\") +\n  theme_minimal()\n\nWarning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.\nℹ Please use `linewidth` instead.\n\n\nWarning: Removed 9 rows containing missing values or values outside the scale range\n(`geom_line()`).\n\n\n\n\n\n\n\n\n\n\n\nMFE Calculation\n\nmean( croptimeseries$production_byland- croptimeseries$fit_damped_09, na.rm = TRUE)\n\n[1] 0.4943744\n\nmean(croptimeseries$production_byland - croptimeseries$fit_damped_1 , na.rm = TRUE)\n\n[1] 0.004820254\n\nmean( croptimeseries$production_byland - croptimeseries$ma_10yr , na.rm = TRUE)\n\n[1] 1.213745"
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Spreadsheet Modeling",
@@ -180,26 +201,5 @@
     "title": "Spreadsheet Modeling",
     "section": "Bottom Left",
     "text": "Bottom Left\nFiles/Plots/Packages/Help/Viewer (Bottom-Right):\n\nThis multifunctional pane offers various tools:\n\nFiles: Navigates your file system and manages files and directories within your R project.\nPlots: Displays any plots or visualizations generated by your R code.\nPackages: Lists installed R packages, allows you to install new ones, and load/unload packages for use.\nHelp: Provides access to R’s extensive documentation and help files for functions and packages.\nViewer: Used for viewing local web content generated within R, such as interactive plots or Shiny applications."
-  },
-  {
-    "objectID": "ts.html#libraries",
-    "href": "ts.html#libraries",
-    "title": "Time Series",
-    "section": "Libraries",
-    "text": "Libraries\nFirst load these libraries. Remove hashtag before install.package to load library.\n\n# Install the forecast package if not already installed\n#install.packages(\"forecast\")\n#install.packages(\"zoo\")  # Only run if not already installed\nlibrary(zoo)\n\n\nAttaching package: 'zoo'\n\n\nThe following objects are masked from 'package:base':\n\n    as.Date, as.Date.numeric\n\n# Load the package\nlibrary(forecast)\n\nWarning: package 'forecast' was built under R version 4.3.3\n\n\nRegistered S3 method overwritten by 'quantmod':\n  method            from\n  as.zoo.data.frame zoo \n\nlibrary(ggplot2)\n\nWarning: package 'ggplot2' was built under R version 4.3.3"
-  },
-  {
-    "objectID": "ts.html#data",
-    "href": "ts.html#data",
-    "title": "Time Series",
-    "section": "Data",
-    "text": "Data\nAnd the following data Remember to switch the directory as this one is specific to my computer!\n\nlibrary(readxl)\ncroptimeseries&lt;- read_excel(\"/Users/ashleylowe/Desktop/SpreadsheetModeling429/2025/In-class/croptimeseries.xlsx\")"
-  },
-  {
-    "objectID": "ts.html#in---class-example",
-    "href": "ts.html#in---class-example",
-    "title": "Time Series",
-    "section": "In - Class Example",
-    "text": "In - Class Example\n\nCreate Variable\n\nFirst make a variable that shows production by land used\n\ncroptimeseries$production_byland=croptimeseries$`Production (million bushels)`/croptimeseries$`Planted area (million acres)`\n\nExponential Smoothing\n\n\n\nUse the created variable to predict a exponential smoothing with a damping value of .9 & 1\n\n\n# Ensure your variable is a time series object\n# Replace the frequency and start values as needed\nts_data &lt;- ts(croptimeseries$production_byland, frequency = 1)\n\n# Exponential smoothing with damping value = 0.9\nmodel_damped_09 &lt;- ets(ts_data, model = \"AAN\", damped = TRUE, phi = 0.9)\nforecast_damped_09 &lt;- forecast(model_damped_09)\n\n# Exponential smoothing with damping value = 1.0 (equivalent to no damping)\nmodel_damped_1 &lt;- ets(ts_data, model = \"AAN\", damped = FALSE)\nforecast_damped_1 &lt;- forecast(model_damped_1)\n\n\n# Get fitted values (same length as original data)\nfitted_09 &lt;- fitted(model_damped_09)\nfitted_1 &lt;- fitted(model_damped_1)\n\n# Add to original data frame\ncroptimeseries$fit_damped_09 &lt;- as.numeric(fitted_09)\ncroptimeseries$fit_damped_1 &lt;- as.numeric(fitted_1)\n\n\n\nMoving Average\n\nCreate a moving average using the interval of a decade.\nExplanation\n\nk = 10 — the window size (10 years)\nfill = NA — pads the beginning with NA so the result matches the length of your original series.\nalign = \"right\" — the moving average is assigned to the last year of each 10-year window.\n\n\n\n# Apply 10-year (decade) moving average\ncroptimeseries$ma_10yr &lt;- zoo::rollmean(croptimeseries$production_byland, \n                                        k = 10, \n                                        fill = NA, \n                                        align = \"right\")\n\n\n\nLine Graph\n\nCreate a line graph that including your production by land (1), the exponential smoothing (2) and the moving average (3)\n\n\nggplot(croptimeseries, aes(x = Year)) +  # replace 'year' if your time column is named differently\n  geom_line(aes(y = production_byland, color = \"Original\"), size = 1) +\n  geom_line(aes(y = fit_damped_09, color = \"Exponential Smoothing\"), size = 1, linetype = \"dashed\") +\n  geom_line(aes(y = ma_10yr, color = \"10-Year Moving Average\"), size = 1, linetype = \"dotdash\") +\n  labs(title = \"Production by Land with Exponential Smoothing and 10-Year Moving Average\",\n       x = \"Year\",\n       y = \"Production\",\n       color = \"Legend\") +\n  theme_minimal()\n\nWarning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.\nℹ Please use `linewidth` instead.\n\n\nWarning: Removed 9 rows containing missing values or values outside the scale range\n(`geom_line()`).\n\n\n\n\n\n\n\n\n\n\n\nMFE Calculation\n\nmean( croptimeseries$production_byland- croptimeseries$fit_damped_09, na.rm = TRUE)\n\n[1] 0.4943744\n\nmean(croptimeseries$production_byland - croptimeseries$fit_damped_1 , na.rm = TRUE)\n\n[1] 0.004820254\n\nmean( croptimeseries$production_byland - croptimeseries$ma_10yr , na.rm = TRUE)\n\n[1] 1.213745"
   }
 ]
