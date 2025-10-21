@@ -57,9 +57,6 @@ croptimeseries<- read_excel("/Users/ashleylowe/Desktop/SpreadsheetModeling429/20
 
     ### Exponential Smoothing
 
-```{=html}
-<!-- -->
-```
 2.  Use the created variable to predict a exponential smoothing with a damping value of .9. **(we will ignore .1 for this example)**
 
 Because **R\'s `ets()` function is designed to automatically optimize and validate model parameters** --- and it will **reject combinations** (like `AAN` with `phi = 0.1`) that it determines are **unstable or inappropriate** for your data.
@@ -67,7 +64,6 @@ Because **R\'s `ets()` function is designed to automatically optimize and valida
 In contrast, **Excel doesn't optimize or reject your model**. It simply applies the formula, even if it results in poor or unstable forecasts.
 
 ```{r}
-
 # Ensure your variable is a time series object
 # Replace the frequency and start values as needed
 ts_data <- ts(croptimeseries$production_byland, frequency = 1)
@@ -79,11 +75,9 @@ forecast_damped_09 <- forecast(model_damped_09)
 
 # Get fitted values (same length as original data)
 croptimeseries$fit_damped_09 <- as.numeric(fitted(model_damped_09))
-croptimeseries$fit_damped_1  <- as.numeric(fitted(model_damped_1))
 
-# Add to original data frame
-croptimeseries$fit_damped_09 <- as.numeric(fitted_09)
-croptimeseries$fit_damped_1 <- as.numeric(fitted_1)
+
+
 
 ```
 
@@ -108,11 +102,9 @@ croptimeseries$ma_10yr <- ma(ts_data, order = 10)
 
 ```{r}
 
-
 ggplot(croptimeseries, aes(x = Year)) +  # Make sure 'Year' exists and is correct
   geom_line(aes(y = production_byland, color = "Original"), size = 1) +
   geom_line(aes(y = fit_damped_09, color = "Exp. Smoothing (0.9)"), size = 1, linetype = "dashed") +
-  geom_line(aes(y = fit_damped_1, color = "Exp. Smoothing (1.0)"), size = 1, linetype = "dotted") +
   geom_line(aes(y = ma_10yr, color = "10-Year Moving Average"), size = 1, linetype = "dotdash") +
   labs(title = "Production by Land with Exponential Smoothing and 10-Year Moving Average",
        x = "Year",
