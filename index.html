@@ -141,6 +141,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">LinearRegression</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="./ts.html"> 
+<span class="menu-text">TimesSeries</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="./lo.html"> 
 <span class="menu-text">LinearOptimization</span></a>
   </li>  
@@ -455,9 +459,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="text-operators-functions">Text Operators / Functions</h2>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 27%">
-<col style="width: 26%">
-<col style="width: 45%">
+<col style="width: 28%">
+<col style="width: 21%">
+<col style="width: 49%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -1108,12 +1112,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-97"><a href="#cb5-97" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-98"><a href="#cb5-98" aria-hidden="true" tabindex="-1"></a><span class="fu">## Text Operators / Functions</span></span>
 <span id="cb5-99"><a href="#cb5-99" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-100"><a href="#cb5-100" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Function / Operator** | **Excel Example** | **R Example** <span class="pp">|</span></span>
-<span id="cb5-101"><a href="#cb5-101" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------------------|-------------------|---------------------------------|</span></span>
-<span id="cb5-102"><a href="#cb5-102" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Concatenation <span class="pp">|</span> <span class="in">`=A1 &amp; B1`</span> <span class="pp">|</span> <span class="in">`paste(x, y, sep = "")`</span> or <span class="in">`paste0(x, y)`</span> <span class="pp">|</span></span>
-<span id="cb5-103"><a href="#cb5-103" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Uppercase <span class="pp">|</span> <span class="in">`=UPPER(A1)`</span> <span class="pp">|</span> <span class="in">`toupper(x)`</span> <span class="pp">|</span></span>
-<span id="cb5-104"><a href="#cb5-104" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Lowercase <span class="pp">|</span> <span class="in">`=LOWER(A1)`</span> <span class="pp">|</span> <span class="in">`tolower(x)`</span> <span class="pp">|</span></span>
-<span id="cb5-105"><a href="#cb5-105" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Length of string <span class="pp">|</span> <span class="in">`=LEN(A1)`</span> <span class="pp">|</span> <span class="in">`nchar(x)`</span> <span class="pp">|</span></span>
+<span id="cb5-100"><a href="#cb5-100" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Function / Operator** | **Excel Example** | **R Example**                             <span class="pp">|</span></span>
+<span id="cb5-101"><a href="#cb5-101" aria-hidden="true" tabindex="-1"></a><span class="pp">|-------------------------|-------------------|-------------------------------------------|</span></span>
+<span id="cb5-102"><a href="#cb5-102" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Concatenation           <span class="pp">|</span> <span class="in">`=A1 &amp; B1`</span>        <span class="pp">|</span> <span class="in">`paste(x, y, sep = "")`</span> or <span class="in">`paste0(x, y)`</span> <span class="pp">|</span></span>
+<span id="cb5-103"><a href="#cb5-103" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Uppercase               <span class="pp">|</span> <span class="in">`=UPPER(A1)`</span>      <span class="pp">|</span> <span class="in">`toupper(x)`</span>                              <span class="pp">|</span></span>
+<span id="cb5-104"><a href="#cb5-104" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Lowercase               <span class="pp">|</span> <span class="in">`=LOWER(A1)`</span>      <span class="pp">|</span> <span class="in">`tolower(x)`</span>                              <span class="pp">|</span></span>
+<span id="cb5-105"><a href="#cb5-105" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Length of string        <span class="pp">|</span> <span class="in">`=LEN(A1)`</span>        <span class="pp">|</span> <span class="in">`nchar(x)`</span>                                <span class="pp">|</span></span>
 <span id="cb5-106"><a href="#cb5-106" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-107"><a href="#cb5-107" aria-hidden="true" tabindex="-1"></a><span class="fu">## Cell References vs. Variable References</span></span>
 <span id="cb5-108"><a href="#cb5-108" aria-hidden="true" tabindex="-1"></a></span>
@@ -1132,7 +1136,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-121"><a href="#cb5-121" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-122"><a href="#cb5-122" aria-hidden="true" tabindex="-1"></a>    This pane is for writing, editing, and saving R scripts. You can compose multiple lines of code, add comments, and save your work for future use and reproducibility. Commands written here are not executed until you explicitly run them.</span>
 <span id="cb5-123"><a href="#cb5-123" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-124"><a href="#cb5-124" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/Screenshot 2025-09-19 at 2.01.37 PM.png)</span></span>
+<span id="cb5-124"><a href="#cb5-124" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/Screenshot%202025-09-19%20at%202.01.37%20PM.png)</span></span>
 <span id="cb5-125"><a href="#cb5-125" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-126"><a href="#cb5-126" aria-hidden="true" tabindex="-1"></a><span class="fu">## Upper Left</span></span>
 <span id="cb5-127"><a href="#cb5-127" aria-hidden="true" tabindex="-1"></a></span>
@@ -1148,7 +1152,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-137"><a href="#cb5-137" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-138"><a href="#cb5-138" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>**Tutorial:** Provides access to interactive tutorials for learning R.</span>
 <span id="cb5-139"><a href="#cb5-139" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-140"><a href="#cb5-140" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/Screenshot 2025-09-19 at 2.09.45 PM.png)</span></span>
+<span id="cb5-140"><a href="#cb5-140" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/Screenshot%202025-09-19%20at%202.09.45%20PM.png)</span></span>
 <span id="cb5-141"><a href="#cb5-141" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-142"><a href="#cb5-142" aria-hidden="true" tabindex="-1"></a><span class="fu">## Bottom Left</span></span>
 <span id="cb5-143"><a href="#cb5-143" aria-hidden="true" tabindex="-1"></a></span>
@@ -1166,7 +1170,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-155"><a href="#cb5-155" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-156"><a href="#cb5-156" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>**Viewer:** Used for viewing local web content generated within R, such as interactive plots or Shiny applications.</span>
 <span id="cb5-157"><a href="#cb5-157" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-158"><a href="#cb5-158" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/Screenshot 2025-09-19 at 2.09.22 PM.png)</span></span>
+<span id="cb5-158"><a href="#cb5-158" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/Screenshot%202025-09-19%20at%202.09.22%20PM.png)</span></span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
