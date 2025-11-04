@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -69,6 +104,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -143,7 +207,35 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#we-will-be-using-this-after" id="toc-we-will-be-using-this-after" class="nav-link active" data-scroll-target="#we-will-be-using-this-after">We will be using this after :</a></li>
+  <li><a href="#linear-optimization" id="toc-linear-optimization" class="nav-link active" data-scroll-target="#linear-optimization">Linear Optimization</a>
+  <ul class="collapse">
+  <li><a href="#libraries-needed" id="toc-libraries-needed" class="nav-link" data-scroll-target="#libraries-needed">Libraries Needed</a></li>
+  </ul></li>
+  <li><a href="#min-example" id="toc-min-example" class="nav-link" data-scroll-target="#min-example">Min Example</a>
+  <ul class="collapse">
+  <li><a href="#step-1-mathematical-formulation-of-the-linear-programming-model" id="toc-step-1-mathematical-formulation-of-the-linear-programming-model" class="nav-link" data-scroll-target="#step-1-mathematical-formulation-of-the-linear-programming-model">Step 1 — Mathematical Formulation of the Linear Programming Model</a>
+  <ul class="collapse">
+  <li><a href="#decision-variables" id="toc-decision-variables" class="nav-link" data-scroll-target="#decision-variables"><strong>Decision Variables</strong></a></li>
+  <li><a href="#objective-function" id="toc-objective-function" class="nav-link" data-scroll-target="#objective-function"><strong>Objective Function</strong></a></li>
+  <li><a href="#subject-to-the-constraints" id="toc-subject-to-the-constraints" class="nav-link" data-scroll-target="#subject-to-the-constraints"><strong>Subject to the Constraints</strong></a></li>
+  <li><a href="#minimization" id="toc-minimization" class="nav-link" data-scroll-target="#minimization">Minimization</a></li>
+  <li><a href="#constraints" id="toc-constraints" class="nav-link" data-scroll-target="#constraints">Constraints</a></li>
+  <li><a href="#linear-formula" id="toc-linear-formula" class="nav-link" data-scroll-target="#linear-formula">Linear Formula</a></li>
+  <li><a href="#answer" id="toc-answer" class="nav-link" data-scroll-target="#answer">Answer</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#max-example" id="toc-max-example" class="nav-link" data-scroll-target="#max-example">Max Example</a>
+  <ul class="collapse">
+  <li><a href="#step-1-welte-mutual-funds" id="toc-step-1-welte-mutual-funds" class="nav-link" data-scroll-target="#step-1-welte-mutual-funds">Step 1 — Welte Mutual Funds</a>
+  <ul class="collapse">
+  <li><a href="#decision-variables-1" id="toc-decision-variables-1" class="nav-link" data-scroll-target="#decision-variables-1"><strong>Decision Variables</strong></a></li>
+  <li><a href="#objective-function-1" id="toc-objective-function-1" class="nav-link" data-scroll-target="#objective-function-1"><strong>Objective Function</strong></a></li>
+  <li><a href="#subject-to-the-constraints-1" id="toc-subject-to-the-constraints-1" class="nav-link" data-scroll-target="#subject-to-the-constraints-1"><strong>Subject to the Constraints</strong></a></li>
+  <li><a href="#maximizations" id="toc-maximizations" class="nav-link" data-scroll-target="#maximizations">Maximizations</a></li>
+  <li><a href="#linear-formula-1" id="toc-linear-formula-1" class="nav-link" data-scroll-target="#linear-formula-1">Linear Formula</a></li>
+  <li><a href="#answer-1" id="toc-answer-1" class="nav-link" data-scroll-target="#answer-1">Answer</a></li>
+  </ul></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -169,20 +261,207 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="we-will-be-using-this-after" class="level2">
-<h2 class="anchored" data-anchor-id="we-will-be-using-this-after">We will be using this after :</h2>
+<section id="linear-optimization" class="level1">
+<h1>Linear Optimization</h1>
+<section id="libraries-needed" class="level2">
+<h2 class="anchored" data-anchor-id="libraries-needed">Libraries Needed</h2>
+<p>Load these libraries into your environment.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install the lpSolve package if you haven't</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("lpSolve")</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the package</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lpSolve)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'lpSolve' was built under R version 4.3.3</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="min-example" class="level1">
+<h1>Min Example</h1>
+<section id="step-1-mathematical-formulation-of-the-linear-programming-model" class="level2">
+<h2 class="anchored" data-anchor-id="step-1-mathematical-formulation-of-the-linear-programming-model">Step 1 — Mathematical Formulation of the Linear Programming Model</h2>
+<section id="decision-variables" class="level3">
+<h3 class="anchored" data-anchor-id="decision-variables"><strong>Decision Variables</strong></h3>
+<p>Let</p>
+<p>[</p>
+<span class="math display">\[\begin{aligned}
+A &amp;= \text{number of gallons of product A to produce} \\
+B &amp;= \text{number of gallons of product B to produce}
+\end{aligned}\]</span>
+<p>]</p>
+<hr>
+</section>
+<section id="objective-function" class="level3">
+<h3 class="anchored" data-anchor-id="objective-function"><strong>Objective Function</strong></h3>
+<p>Minimize the total production cost:</p>
+<p><span class="math display">\[
+Z = 2A + 3B
+\]</span></p>
+<hr>
+</section>
+<section id="subject-to-the-constraints" class="level3">
+<h3 class="anchored" data-anchor-id="subject-to-the-constraints"><strong>Subject to the Constraints</strong></h3>
 <ol type="1">
-<li>Linear Regression</li>
-<li>Time Series Analysis</li>
+<li><p><strong>Customer demand for product A:</strong><br>
+<span class="math display">\[A \ge 125 \]</span></p></li>
+<li><p><strong>Minimum combined production requirement:</strong><br>
+<span class="math display">\[ A + B \ge 350 \]</span></p></li>
+<li><p><strong>Processing time limitation (600 hours):</strong><br>
+<span class="math display">\[ 2A + B \le 600 \]</span></p></li>
+<li><p><strong>Non-negativity constraints:</strong><br>
+<span class="math display">\[A,B \ge 0 \]</span></p></li>
 </ol>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://media2.giphy.com/media/v1.Y2lkPTZjMDliOTUyanhqbnZiMGd6N2gydmdqdjBuZWg4cDIyaDFib25uNmtlMHR6ZnRwaSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/FoH28ucxZFJZu/200w.gif" class="img-fluid figure-img"></p>
-<figcaption>Its So Exhausting Waiting For Death GIFs - Find &amp; Share on GIPHY</figcaption>
-</figure>
+<p>This code will walk you through the set up of the minimization progment and then the constraints</p>
+</section>
+<section id="minimization" class="level3">
+<h3 class="anchored" data-anchor-id="minimization">Minimization</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Objective coefficients (for 2A + 3B)</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>objective <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="constraints" class="level3">
+<h3 class="anchored" data-anchor-id="constraints">Constraints</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Constraint matrix</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>constraints <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span>, <span class="dv">0</span>,   <span class="co"># A &gt;= 125</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span>, <span class="dv">1</span>,   <span class="co"># A + B &gt;= 350</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="dv">2</span>, <span class="dv">1</span>    <span class="co"># 2A + B &lt;= 600</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>), <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Direction of constraints</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>direction <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"&gt;="</span>, <span class="st">"&gt;="</span>, <span class="st">"&lt;="</span>)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Right-hand side of constraints</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>rhs <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">125</span>, <span class="dv">350</span>, <span class="dv">600</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="linear-formula" class="level3">
+<h3 class="anchored" data-anchor-id="linear-formula">Linear Formula</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Solve the LP</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>solution <span class="ot">&lt;-</span> <span class="fu">lp</span>(<span class="at">direction =</span> <span class="st">"min"</span>, <span class="at">objective.in =</span> objective, <span class="at">const.mat =</span> constraints, <span class="at">const.dir =</span> direction,<span class="at">const.rhs =</span> rhs)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="answer" class="level3">
+<h3 class="anchored" data-anchor-id="answer">Answer</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Display results</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>solution<span class="sc">$</span>objval       <span class="co"># Minimum total cost</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 800</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>solution<span class="sc">$</span>solution      <span class="co"># Optimal values for A and B</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 250 100</code></pre>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="max-example" class="level1">
+<h1>Max Example</h1>
+<section id="step-1-welte-mutual-funds" class="level2">
+<h2 class="anchored" data-anchor-id="step-1-welte-mutual-funds">Step 1 — Welte Mutual Funds</h2>
+<section id="decision-variables-1" class="level3">
+<h3 class="anchored" data-anchor-id="decision-variables-1"><strong>Decision Variables</strong></h3>
+<p>Let</p>
+<p>[</p>
+<span class="math display">\[\begin{aligned}
+x_1 &amp;= \text{dollars invested in Atlantic Oil} \\
+x_2 &amp;= \text{dollars invested in Pacific Oil} \\
+x_3 &amp;= \text{dollars invested in Midwest Steel} \\
+x_4 &amp;= \text{dollars invested in Huber Steel} \\
+x_5 &amp;= \text{dollars invested in Government Bonds}
+\end{aligned}\]</span>
+<p>]</p>
+<hr>
+</section>
+<section id="objective-function-1" class="level3">
+<h3 class="anchored" data-anchor-id="objective-function-1"><strong>Objective Function</strong></h3>
+<p>Maximize the total projected return:</p>
+<p><span class="math display">\[ \text{Maximize } Z = 0.073x_1 + 0.103x_2 + 0.064x_3 + 0.075x_4 + 0.045x_5 \]</span></p>
+<hr>
+</section>
+<section id="subject-to-the-constraints-1" class="level3">
+<h3 class="anchored" data-anchor-id="subject-to-the-constraints-1"><strong>Subject to the Constraints</strong></h3>
+<ol type="1">
+<li><p><strong>Total investment (available funds):</strong><br>
+<span class="math display">\[  x_1 + x_2 + x_3 + x_4 + x_5 = 100{,}000\]</span></p></li>
+<li><p><strong>Oil industry limit:</strong><br>
+<span class="math display">\[  x_1 + x_2 \le 50{,}000 \]</span><br>
+</p></li>
+<li><p><strong>Steel industry limit:</strong><br>
+<span class="math display">\[   x_3 + x_4 \le 50{,}000 \]</span></p></li>
+<li><p><strong>Government bonds requirement (≥ 25 % of steel investment):</strong><br>
+<span class="math display">\[   x_5 \ge 0.25(x_3 + x_4)     \]</span> or equivalently <span class="math display">\[  -x_5 + 0.25x_3 + 0.25x_4 \le 0     \]</span></p></li>
+<li><p><strong>Pacific Oil limit (≤ 60 % of total oil investment):</strong><br>
+<span class="math display">\[   x_2 \le 0.60(x_1 + x_2)     \]</span><br>
+or equivalently <span class="math display">\[   -0.6x_1 + 0.4x_2 \le 0     \]</span></p></li>
+<li><p><strong>Non-negativity:</strong><br>
+<span class="math display">\[   x_1,,x_2,,x_3,,x_4,,x_5 \ge 0     \]</span></p></li>
+</ol>
+</section>
+<section id="maximizations" class="level3">
+<h3 class="anchored" data-anchor-id="maximizations">Maximizations</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Objective coefficients</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>objective <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.073</span>, <span class="fl">0.103</span>, <span class="fl">0.064</span>, <span class="fl">0.075</span>, <span class="fl">0.045</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Constraints</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Constraint matrix</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>constraints <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># x1  x2   x3   x4   x5</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>   <span class="dv">1</span>,   <span class="dv">1</span>,   <span class="dv">1</span>,   <span class="dv">1</span>,   <span class="dv">1</span>,      <span class="co"># total investment = 100000</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>   <span class="dv">1</span>,   <span class="dv">1</span>,   <span class="dv">0</span>,   <span class="dv">0</span>,   <span class="dv">0</span>,      <span class="co"># oil ≤ 50000</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>   <span class="dv">0</span>,   <span class="dv">0</span>,   <span class="dv">1</span>,   <span class="dv">1</span>,   <span class="dv">0</span>,      <span class="co"># steel ≤ 50000</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>   <span class="dv">0</span>,   <span class="dv">0</span>,   <span class="fl">0.25</span>, <span class="fl">0.25</span>, <span class="sc">-</span><span class="dv">1</span>,   <span class="co"># bond ≥ 0.25*(steel)</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="sc">-</span><span class="fl">0.6</span>, <span class="fl">0.4</span>,  <span class="dv">0</span>,   <span class="dv">0</span>,   <span class="dv">0</span>      <span class="co"># Pacific Oil ≤ 0.6*(oil)</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>), <span class="at">nrow =</span> <span class="dv">5</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Direction of constraints</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>directions <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"="</span>, <span class="st">"&lt;="</span>, <span class="st">"&lt;="</span>, <span class="st">"&lt;="</span>, <span class="st">"&lt;="</span>)</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Right-hand side of constraints</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>rhs <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">100000</span>, <span class="dv">50000</span>, <span class="dv">50000</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="linear-formula-1" class="level3">
+<h3 class="anchored" data-anchor-id="linear-formula-1">Linear Formula</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Solve the LP</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>solution <span class="ot">&lt;-</span> <span class="fu">lp</span>(<span class="at">direction =</span> <span class="st">"max"</span>,</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">objective.in =</span> objective,</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">const.mat =</span> constraints,</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">const.dir =</span> directions,</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">const.rhs =</span> rhs)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="answer-1" class="level3">
+<h3 class="anchored" data-anchor-id="answer-1">Answer</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Results</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>solution<span class="sc">$</span>status        <span class="co"># 0 = optimal</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>solution<span class="sc">$</span>objval        <span class="co"># Maximum return</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 8000</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>solution<span class="sc">$</span>solution      <span class="co"># Optimal investment in x1-x5</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 20000 30000     0 40000 10000</code></pre>
+</div>
 </div>
 
 
+</section>
+</section>
 </section>
 
 </main> <!-- /main -->
