@@ -4,14 +4,14 @@
     "href": "lo.html",
     "title": "Linear Optimization",
     "section": "",
-    "text": "Load these libraries into your environment.\n\n# Install the lpSolve package if you haven't\n#install.packages(\"lpSolve\")\n\n# Load the package\nlibrary(lpSolve)\n\nWarning: package 'lpSolve' was built under R version 4.3.3"
+    "text": "These two examples are ones we covered in class. One minimization of cost of production of to products and one more complex maximization on a split for a mutual fund."
   },
   {
     "objectID": "lo.html#libraries-needed",
     "href": "lo.html#libraries-needed",
     "title": "Linear Optimization",
-    "section": "",
-    "text": "Load these libraries into your environment.\n\n# Install the lpSolve package if you haven't\n#install.packages(\"lpSolve\")\n\n# Load the package\nlibrary(lpSolve)\n\nWarning: package 'lpSolve' was built under R version 4.3.3"
+    "section": "Libraries Needed",
+    "text": "Libraries Needed\nLoad these libraries into your environment. Remember you will like need to remove the hashtag in front of install.packages(“lpSolve”) to run the code in r\n\n# Install the lpSolve package if you haven't\n#install.packages(\"lpSolve\")\n\n# Load the package\nlibrary(lpSolve)\n\nWarning: package 'lpSolve' was built under R version 4.3.3"
   },
   {
     "objectID": "lo.html#step-1-mathematical-formulation-of-the-linear-programming-model",
