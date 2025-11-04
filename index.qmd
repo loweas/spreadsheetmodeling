@@ -93,12 +93,12 @@ Examples:
 
 ## Text Operators / Functions
 
-| **Function / Operator** | **Excel Example** | **R Example**                             |
-|-------------------------|-------------------|-------------------------------------------|
-| Concatenation           | `=A1 & B1`        | `paste(x, y, sep = "")` or `paste0(x, y)` |
-| Uppercase               | `=UPPER(A1)`      | `toupper(x)`                              |
-| Lowercase               | `=LOWER(A1)`      | `tolower(x)`                              |
-| Length of string        | `=LEN(A1)`        | `nchar(x)`                                |
+| **Function / Operator** | **Excel Example** | **R Example** |
+|--------------------|------------------|----------------------------------|
+| Concatenation | `=A1 & B1` | `paste(x, y, sep = "")` or `paste0(x, y)` |
+| Uppercase | `=UPPER(A1)` | `toupper(x)` |
+| Lowercase | `=LOWER(A1)` | `tolower(x)` |
+| Length of string | `=LEN(A1)` | `nchar(x)` |
 
 ## Cell References vs. Variable References
 

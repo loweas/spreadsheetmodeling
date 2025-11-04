@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Linear Optimization – Spreadsheet Modeling Econ/Nrem</title>
+<title>Linear Regression &amp; Time Series – Spreadsheet Modeling Econ/Nrem</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -55,7 +55,27 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -164,7 +184,7 @@ window.Quarto = {
 <span class="menu-text">DataVisualization</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./lr.html"> 
+    <a class="nav-link active" href="./lr.html" aria-current="page"> 
 <span class="menu-text">LinearRegression</span></a>
   </li>  
   <li class="nav-item">
@@ -172,7 +192,7 @@ window.Quarto = {
 <span class="menu-text">TimesSeries</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./lo.html" aria-current="page"> 
+    <a class="nav-link" href="./lo.html"> 
 <span class="menu-text">LinearOptimization</span></a>
   </li>  
 </ul>
@@ -207,35 +227,12 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#linear-optimization" id="toc-linear-optimization" class="nav-link active" data-scroll-target="#linear-optimization">Linear Optimization</a>
+  <li><a href="#simple-linear-regression" id="toc-simple-linear-regression" class="nav-link active" data-scroll-target="#simple-linear-regression">Simple Linear Regression</a>
   <ul class="collapse">
-  <li><a href="#libraries-needed" id="toc-libraries-needed" class="nav-link" data-scroll-target="#libraries-needed">Libraries Needed</a></li>
+  <li><a href="#wage-example-ols-model" id="toc-wage-example-ols-model" class="nav-link" data-scroll-target="#wage-example-ols-model">Wage Example OLS model</a></li>
   </ul></li>
-  <li><a href="#min-example" id="toc-min-example" class="nav-link" data-scroll-target="#min-example">Min Example</a>
-  <ul class="collapse">
-  <li><a href="#step-1-mathematical-formulation-of-the-linear-programming-model" id="toc-step-1-mathematical-formulation-of-the-linear-programming-model" class="nav-link" data-scroll-target="#step-1-mathematical-formulation-of-the-linear-programming-model">Step 1 — Mathematical Formulation of the Linear Programming Model</a>
-  <ul class="collapse">
-  <li><a href="#decision-variables" id="toc-decision-variables" class="nav-link" data-scroll-target="#decision-variables"><strong>Decision Variables</strong></a></li>
-  <li><a href="#objective-function" id="toc-objective-function" class="nav-link" data-scroll-target="#objective-function"><strong>Objective Function</strong></a></li>
-  <li><a href="#subject-to-the-constraints" id="toc-subject-to-the-constraints" class="nav-link" data-scroll-target="#subject-to-the-constraints"><strong>Subject to the Constraints</strong></a></li>
-  <li><a href="#minimization" id="toc-minimization" class="nav-link" data-scroll-target="#minimization">Minimization</a></li>
-  <li><a href="#constraints" id="toc-constraints" class="nav-link" data-scroll-target="#constraints">Constraints</a></li>
-  <li><a href="#linear-formula" id="toc-linear-formula" class="nav-link" data-scroll-target="#linear-formula">Linear Formula</a></li>
-  <li><a href="#answer" id="toc-answer" class="nav-link" data-scroll-target="#answer">Answer</a></li>
-  </ul></li>
-  </ul></li>
-  <li><a href="#max-example" id="toc-max-example" class="nav-link" data-scroll-target="#max-example">Max Example</a>
-  <ul class="collapse">
-  <li><a href="#step-1-welte-mutual-funds" id="toc-step-1-welte-mutual-funds" class="nav-link" data-scroll-target="#step-1-welte-mutual-funds">Step 1 — Welte Mutual Funds</a>
-  <ul class="collapse">
-  <li><a href="#decision-variables-1" id="toc-decision-variables-1" class="nav-link" data-scroll-target="#decision-variables-1"><strong>Decision Variables</strong></a></li>
-  <li><a href="#objective-function-1" id="toc-objective-function-1" class="nav-link" data-scroll-target="#objective-function-1"><strong>Objective Function</strong></a></li>
-  <li><a href="#subject-to-the-constraints-1" id="toc-subject-to-the-constraints-1" class="nav-link" data-scroll-target="#subject-to-the-constraints-1"><strong>Subject to the Constraints</strong></a></li>
-  <li><a href="#maximizations" id="toc-maximizations" class="nav-link" data-scroll-target="#maximizations">Maximizations</a></li>
-  <li><a href="#linear-formula-1" id="toc-linear-formula-1" class="nav-link" data-scroll-target="#linear-formula-1">Linear Formula</a></li>
-  <li><a href="#answer-1" id="toc-answer-1" class="nav-link" data-scroll-target="#answer-1">Answer</a></li>
-  </ul></li>
-  </ul></li>
+  <li><a href="#multiple-regression-analysis-estimation" id="toc-multiple-regression-analysis-estimation" class="nav-link" data-scroll-target="#multiple-regression-analysis-estimation">Multiple Regression Analysis: Estimation</a></li>
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a></li>
   </ul>
 </nav>
     </div>
@@ -244,7 +241,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Linear Optimization</h1>
+<h1 class="title">Linear Regression &amp; Time Series</h1>
 </div>
 
 
@@ -261,210 +258,209 @@ window.Quarto = {
 </header>
 
 
-<section id="linear-optimization" class="level1">
-<h1>Linear Optimization</h1>
-<section id="libraries-needed" class="level2">
-<h2 class="anchored" data-anchor-id="libraries-needed">Libraries Needed</h2>
-<p>Load these libraries into your environment.</p>
+<section id="simple-linear-regression" class="level1">
+<h1>Simple Linear Regression</h1>
+<p>This simple example will cover the same one we covered in class. It is a famous example</p>
+<p>A simple regression model is</p>
+<p><span class="math display">\[y=\beta_0+\beta_1x+u\]</span></p>
+<p><span class="math inline">\(y\)</span> is the dependent variable, the one we want to explain or predict <span class="math inline">\(x\)</span> is independent variable (regressor), the one we use to explain or predict <span class="math inline">\(y\)</span> <span class="math inline">\(u\)</span> is error term representing unobserved other factors that affect y <span class="math inline">\(β_0\)</span> is intercept term (constant term) <span class="math inline">\(β_1\)</span> is slope coefficient.</p>
+<p>We will cover a basic example in linear regression which reproduces a well known example of the wage pay gap. This example can be found in</p>
+<p><a href="https://cbpbu.ac.in/userfiles/file/2020/STUDY_MAT/ECO/2.pdf"><em>Introductory Econometrics: A Modern Approach, 7e</em> by Jeffrey M. Wooldridge.</a> <span class="citation" data-cites="wooldridge2013">(<a href="#ref-wooldridge2013" role="doc-biblioref">Wooldridge 2013</a>)</span></p>
+<p><img src="images/download.jpg" class="img-fluid"></p>
+<p>This is a great resource and textbook for those in economics and interested in regressional analysis!</p>
+<p>This is a finding that is more of interest to the broader field of economics than our focus of valuing nature. However, I find this is really helpful to illustrate the power of regression analysis and what the they can tell us about the world.</p>
+<p>Each example illustrates how to load data, build econometric models, and compute estimates with R.</p>
+<p>Lets Begin Install and load the <code>wooldridge</code> package and lets get started!</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install the lpSolve package if you haven't</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("lpSolve")</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the package</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lpSolve)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("wooldridge")</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(wooldridge)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'lpSolve' was built under R version 4.3.3</code></pre>
+<pre><code>Warning: package 'wooldridge' was built under R version 4.3.3</code></pre>
 </div>
 </div>
-</section>
-</section>
-<section id="min-example" class="level1">
-<h1>Min Example</h1>
-<section id="step-1-mathematical-formulation-of-the-linear-programming-model" class="level2">
-<h2 class="anchored" data-anchor-id="step-1-mathematical-formulation-of-the-linear-programming-model">Step 1 — Mathematical Formulation of the Linear Programming Model</h2>
-<section id="decision-variables" class="level3">
-<h3 class="anchored" data-anchor-id="decision-variables"><strong>Decision Variables</strong></h3>
-<p>Let</p>
-<p>[</p>
-<span class="math display">\[\begin{aligned}
-A &amp;= \text{number of gallons of product A to produce} \\
-B &amp;= \text{number of gallons of product B to produce}
-\end{aligned}\]</span>
-<p>]</p>
-<hr>
-</section>
-<section id="objective-function" class="level3">
-<h3 class="anchored" data-anchor-id="objective-function"><strong>Objective Function</strong></h3>
-<p>Minimize the total production cost:</p>
-<p><span class="math display">\[
-Z = 2A + 3B
-\]</span></p>
-<hr>
-</section>
-<section id="subject-to-the-constraints" class="level3">
-<h3 class="anchored" data-anchor-id="subject-to-the-constraints"><strong>Subject to the Constraints</strong></h3>
-<ol type="1">
-<li><p><strong>Customer demand for product A:</strong><br>
-<span class="math display">\[A \ge 125 \]</span></p></li>
-<li><p><strong>Minimum combined production requirement:</strong><br>
-<span class="math display">\[ A + B \ge 350 \]</span></p></li>
-<li><p><strong>Processing time limitation (600 hours):</strong><br>
-<span class="math display">\[ 2A + B \le 600 \]</span></p></li>
-<li><p><strong>Non-negativity constraints:</strong><br>
-<span class="math display">\[A,B \ge 0 \]</span></p></li>
-</ol>
-<p>This code will walk you through the set up of the minimization progment and then the constraints</p>
-</section>
-<section id="minimization" class="level3">
-<h3 class="anchored" data-anchor-id="minimization">Minimization</h3>
+<section id="wage-example-ols-model" class="level3">
+<h3 class="anchored" data-anchor-id="wage-example-ols-model">Wage Example OLS model</h3>
+<p>Load the <code>wage1</code> data and check out the documentation.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Objective coefficients (for 2A + 3B)</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>objective <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"wage1"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>?wage1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section>
-<section id="constraints" class="level3">
-<h3 class="anchored" data-anchor-id="constraints">Constraints</h3>
+<p>The documentation indicates these are data from the 1976 Current Population Survey, collected by Henry Farber when he and Wooldridge were colleagues at MIT in 1988.</p>
+<p>educ: years of education</p>
+<p>wage: average hourly earnings</p>
+<p>lwage: log of the average hourly earnings</p>
+<p>First, make a scatter-plot of the two variables and look for possible patterns in the relationship between them.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Constraint matrix</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>constraints <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span>, <span class="dv">0</span>,   <span class="co"># A &gt;= 125</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span>, <span class="dv">1</span>,   <span class="co"># A + B &gt;= 350</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="dv">2</span>, <span class="dv">1</span>    <span class="co"># 2A + B &lt;= 600</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>), <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Direction of constraints</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>direction <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"&gt;="</span>, <span class="st">"&gt;="</span>, <span class="st">"&lt;="</span>)</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Right-hand side of constraints</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>rhs <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">125</span>, <span class="dv">350</span>, <span class="dv">600</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(wage1<span class="sc">$</span>educ, wage1<span class="sc">$</span>wage)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lr_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
-</section>
-<section id="linear-formula" class="level3">
-<h3 class="anchored" data-anchor-id="linear-formula">Linear Formula</h3>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Solve the LP</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>solution <span class="ot">&lt;-</span> <span class="fu">lp</span>(<span class="at">direction =</span> <span class="st">"min"</span>, <span class="at">objective.in =</span> objective, <span class="at">const.mat =</span> constraints, <span class="at">const.dir =</span> direction,<span class="at">const.rhs =</span> rhs)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section>
-<section id="answer" class="level3">
-<h3 class="anchored" data-anchor-id="answer">Answer</h3>
+</div>
+<p>It appears that <strong><em>on average</em></strong>, more years of education, leads to higher wages.</p>
+<section id="level" class="level4">
+<h4 class="anchored" data-anchor-id="level">Level</h4>
+<p>First lets look at how education impacts wages.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Display results</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>solution<span class="sc">$</span>objval       <span class="co"># Minimum total cost</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(wage <span class="sc">~</span> educ, <span class="at">data =</span> wage1))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 800</code></pre>
+<pre><code>
+Call:
+lm(formula = wage ~ educ, data = wage1)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-5.3396 -2.1501 -0.9674  1.1921 16.6085 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) -0.90485    0.68497  -1.321    0.187    
+educ         0.54136    0.05325  10.167   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 3.378 on 524 degrees of freedom
+Multiple R-squared:  0.1648,    Adjusted R-squared:  0.1632 
+F-statistic: 103.4 on 1 and 524 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>solution<span class="sc">$</span>solution      <span class="co"># Optimal values for A and B</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 250 100</code></pre>
 </div>
-</div>
+<p>This example shows use the direct level of changes in wages. Interpret the coefficient. The issue that can arise with using the level of wages is that this data set corresponds to data from the ~50 years ago. Inflation has occurred, wages have gone up. It would be more appropriate to look the percentage change in wages based on the level of education.</p>
 </section>
-</section>
-</section>
-<section id="max-example" class="level1">
-<h1>Max Example</h1>
-<section id="step-1-welte-mutual-funds" class="level2">
-<h2 class="anchored" data-anchor-id="step-1-welte-mutual-funds">Step 1 — Welte Mutual Funds</h2>
-<section id="decision-variables-1" class="level3">
-<h3 class="anchored" data-anchor-id="decision-variables-1"><strong>Decision Variables</strong></h3>
-<p>Let</p>
-<p>[</p>
-<span class="math display">\[\begin{aligned}
-x_1 &amp;= \text{dollars invested in Atlantic Oil} \\
-x_2 &amp;= \text{dollars invested in Pacific Oil} \\
-x_3 &amp;= \text{dollars invested in Midwest Steel} \\
-x_4 &amp;= \text{dollars invested in Huber Steel} \\
-x_5 &amp;= \text{dollars invested in Government Bonds}
-\end{aligned}\]</span>
-<p>]</p>
-<hr>
-</section>
-<section id="objective-function-1" class="level3">
-<h3 class="anchored" data-anchor-id="objective-function-1"><strong>Objective Function</strong></h3>
-<p>Maximize the total projected return:</p>
-<p><span class="math display">\[ \text{Maximize } Z = 0.073x_1 + 0.103x_2 + 0.064x_3 + 0.075x_4 + 0.045x_5 \]</span></p>
-<hr>
-</section>
-<section id="subject-to-the-constraints-1" class="level3">
-<h3 class="anchored" data-anchor-id="subject-to-the-constraints-1"><strong>Subject to the Constraints</strong></h3>
-<ol type="1">
-<li><p><strong>Total investment (available funds):</strong><br>
-<span class="math display">\[  x_1 + x_2 + x_3 + x_4 + x_5 = 100{,}000\]</span></p></li>
-<li><p><strong>Oil industry limit:</strong><br>
-<span class="math display">\[  x_1 + x_2 \le 50{,}000 \]</span><br>
-</p></li>
-<li><p><strong>Steel industry limit:</strong><br>
-<span class="math display">\[   x_3 + x_4 \le 50{,}000 \]</span></p></li>
-<li><p><strong>Government bonds requirement (≥ 25 % of steel investment):</strong><br>
-<span class="math display">\[   x_5 \ge 0.25(x_3 + x_4)     \]</span> or equivalently <span class="math display">\[  -x_5 + 0.25x_3 + 0.25x_4 \le 0     \]</span></p></li>
-<li><p><strong>Pacific Oil limit (≤ 60 % of total oil investment):</strong><br>
-<span class="math display">\[   x_2 \le 0.60(x_1 + x_2)     \]</span><br>
-or equivalently <span class="math display">\[   -0.6x_1 + 0.4x_2 \le 0     \]</span></p></li>
-<li><p><strong>Non-negativity:</strong><br>
-<span class="math display">\[   x_1,,x_2,,x_3,,x_4,,x_5 \ge 0     \]</span></p></li>
-</ol>
-</section>
-<section id="maximizations" class="level3">
-<h3 class="anchored" data-anchor-id="maximizations">Maximizations</h3>
+<section id="percentage" class="level4">
+<h4 class="anchored" data-anchor-id="percentage">Percentage</h4>
+<p>The example in the text is interested in the <em>return to another year of education</em>, or what the <strong><em>percentage</em></strong> change in wages one might expect for each additional year of education. To do so, one must use the log(<code>wage</code>). This has already been computed in the data set and is defined as <code>lwage</code>.</p>
+<p>Build a linear model to estimate the relationship between the <em>log of wage</em> (<code>lwage</code>) and <em>education</em> (<code>educ</code>).</p>
+<p><span class="math display">\[\hat{log(wage)}=𝛽_0+𝛽_1𝑒𝑑𝑢𝑐\]</span></p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Objective coefficients</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>objective <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.073</span>, <span class="fl">0.103</span>, <span class="fl">0.064</span>, <span class="fl">0.075</span>, <span class="fl">0.045</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>log_wage_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(lwage <span class="sc">~</span> educ, <span class="at">data =</span> wage1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Constraints</p>
+<p>Print the <code>summary</code> of the results.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Constraint matrix</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>constraints <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># x1  x2   x3   x4   x5</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>   <span class="dv">1</span>,   <span class="dv">1</span>,   <span class="dv">1</span>,   <span class="dv">1</span>,   <span class="dv">1</span>,      <span class="co"># total investment = 100000</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>   <span class="dv">1</span>,   <span class="dv">1</span>,   <span class="dv">0</span>,   <span class="dv">0</span>,   <span class="dv">0</span>,      <span class="co"># oil ≤ 50000</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>   <span class="dv">0</span>,   <span class="dv">0</span>,   <span class="dv">1</span>,   <span class="dv">1</span>,   <span class="dv">0</span>,      <span class="co"># steel ≤ 50000</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>   <span class="dv">0</span>,   <span class="dv">0</span>,   <span class="fl">0.25</span>, <span class="fl">0.25</span>, <span class="sc">-</span><span class="dv">1</span>,   <span class="co"># bond ≥ 0.25*(steel)</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="sc">-</span><span class="fl">0.6</span>, <span class="fl">0.4</span>,  <span class="dv">0</span>,   <span class="dv">0</span>,   <span class="dv">0</span>      <span class="co"># Pacific Oil ≤ 0.6*(oil)</span></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>), <span class="at">nrow =</span> <span class="dv">5</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Direction of constraints</span></span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>directions <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"="</span>, <span class="st">"&lt;="</span>, <span class="st">"&lt;="</span>, <span class="st">"&lt;="</span>, <span class="st">"&lt;="</span>)</span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Right-hand side of constraints</span></span>
-<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>rhs <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">100000</span>, <span class="dv">50000</span>, <span class="dv">50000</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(log_wage_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = lwage ~ educ, data = wage1)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-2.21158 -0.36393 -0.07263  0.29712  1.52339 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 0.583773   0.097336   5.998 3.74e-09 ***
+educ        0.082744   0.007567  10.935  &lt; 2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.4801 on 524 degrees of freedom
+Multiple R-squared:  0.1858,    Adjusted R-squared:  0.1843 
+F-statistic: 119.6 on 1 and 524 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
 </div>
 </section>
-<section id="linear-formula-1" class="level3">
-<h3 class="anchored" data-anchor-id="linear-formula-1">Linear Formula</h3>
+</section>
+</section>
+<section id="multiple-regression-analysis-estimation" class="level1">
+<h1>Multiple Regression Analysis: Estimation</h1>
+<p>Check the documentation for variable information</p>
+<p>Interpret the coefficient. What does</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Solve the LP</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>solution <span class="ot">&lt;-</span> <span class="fu">lp</span>(<span class="at">direction =</span> <span class="st">"max"</span>,</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">objective.in =</span> objective,</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">const.mat =</span> constraints,</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">const.dir =</span> directions,</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">const.rhs =</span> rhs)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>?wage1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>lwage: log of the average hourly earnings</p>
+<p>educ: years of education</p>
+<p>exper: years of potential experience</p>
+<p>tenure: years with current employer</p>
+<p>Plot the variables against <code>lwage</code> and compare their distributions and slope (𝛽) of the simple regression lines.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up 3 plots in one row</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>))</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Wage vs Education</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(wage1<span class="sc">$</span>educ, wage1<span class="sc">$</span>lwage,</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Wage vs Education"</span>,</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Years of Education"</span>,</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">"Log(Wage)"</span>,</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">col =</span> <span class="st">"blue"</span>)</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">lm</span>(lwage <span class="sc">~</span> educ, <span class="at">data =</span> wage1), <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Wage vs Experience</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(wage1<span class="sc">$</span>exper, wage1<span class="sc">$</span>lwage,</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Wage vs Experience"</span>,</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Years of Experience"</span>,</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">""</span>,  <span class="co"># omit y-axis label to avoid clutter</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">col =</span> <span class="st">"darkgreen"</span>)</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">lm</span>(lwage <span class="sc">~</span> exper, <span class="at">data =</span> wage1), <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Wage vs Tenure</span></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(wage1<span class="sc">$</span>tenure, wage1<span class="sc">$</span>lwage,</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Wage vs Tenure"</span>,</span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Years with Employer (Tenure)"</span>,</span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">""</span>,  <span class="co"># omit y-axis label to avoid clutter</span></span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">col =</span> <span class="st">"purple"</span>)</span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">lm</span>(lwage <span class="sc">~</span> tenure, <span class="at">data =</span> wage1), <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Wage vs Female</span></span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(wage1<span class="sc">$</span>female, wage1<span class="sc">$</span>lwage,</span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Wage vs Female"</span>,</span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Binary Indicator"</span>,</span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">""</span>,  <span class="co"># omit y-axis label to avoid clutter</span></span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">col =</span> <span class="st">"pink"</span>)</span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">lm</span>(lwage <span class="sc">~</span> female, <span class="at">data =</span> wage1), <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lr_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Reset plotting layout back to 1 plot</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Estimate the model regressing educ, exper, tenure and female against log(wage).</p>
+<p><span class="math display">\[\hat{log(wage)}=\beta_0+\beta_1educ+\beta_3exper+\beta_4exper^2+\beta_5tenure+\beta_6tenure^2+\beta_7female\]</span></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>hourly_wage_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(wage <span class="sc">~</span> educ <span class="sc">+</span> exper<span class="sc">+</span>expersq <span class="sc">+</span> tenure <span class="sc">+</span>tenursq<span class="sc">+</span>female, <span class="at">data =</span> wage1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Plot the coefficients, representing percentage impact of each variable on log(wage) for a quick comparison.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coefficients</span>(hourly_wage_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> (Intercept)         educ        exper      expersq       tenure      tenursq 
+-2.109749786  0.526255073  0.187838302 -0.003797532  0.211694409 -0.002945994 
+      female 
+-1.783199752 </code></pre>
+</div>
+</div>
+<p>Print the estimated model coefficients:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">coefficients</span>(hourly_wage_model))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lr_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
 </div>
 </section>
-<section id="answer-1" class="level3">
-<h3 class="anchored" data-anchor-id="answer-1">Answer</h3>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Results</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>solution<span class="sc">$</span>status        <span class="co"># 0 = optimal</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>solution<span class="sc">$</span>objval        <span class="co"># Maximum return</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 8000</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>solution<span class="sc">$</span>solution      <span class="co"># Optimal investment in x1-x5</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 20000 30000     0 40000 10000</code></pre>
-</div>
-</div>
+<section id="section" class="level1">
+
+
 
 
 </section>
-</section>
-</section>
 
-</main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-wooldridge2013" class="csl-entry" role="listitem">
+Wooldridge, Jeffrey M. 2013. <em>Introductory econometrics: a modern approach</em>. 5th ed. Mason, Ohio: South-Western, Cengage Learning.
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -538,7 +534,7 @@ or equivalently <span class="math display">\[   -0.6x_1 + 0.4x_2 \le 0     \]</s
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/loweas\.github\.io\/spreadsheetmodeling\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

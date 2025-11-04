@@ -4,9 +4,204 @@ format: html
 editor: visual
 ---
 
-## We will be using this after :
+# Linear Optimization
 
-1.  Linear Regression
-2.  Time Series Analysis
+## Libraries Needed
 
-![Its So Exhausting Waiting For Death GIFs - Find & Share on GIPHY](https://media2.giphy.com/media/v1.Y2lkPTZjMDliOTUyanhqbnZiMGd6N2gydmdqdjBuZWg4cDIyaDFib25uNmtlMHR6ZnRwaSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/FoH28ucxZFJZu/200w.gif)
+Load these libraries into your environment.
+
+```{r}
+# Install the lpSolve package if you haven't
+#install.packages("lpSolve")
+
+# Load the package
+library(lpSolve)
+
+
+```
+
+# Min Example
+
+## Step 1 --- Mathematical Formulation of the Linear Programming Model
+
+### **Decision Variables**
+
+Let
+
+\[
+
+```{=tex}
+\begin{aligned}
+A &= \text{number of gallons of product A to produce} \\
+B &= \text{number of gallons of product B to produce}
+\end{aligned}
+```
+\]
+
+------------------------------------------------------------------------
+
+### **Objective Function**
+
+Minimize the total production cost:
+
+$$
+Z = 2A + 3B 
+$$
+
+------------------------------------------------------------------------
+
+### **Subject to the Constraints**
+
+1.  **Customer demand for product A:**\
+   $$A \ge 125 $$
+
+2.  **Minimum combined production requirement:**\
+    $$ A + B \ge 350 $$
+
+3.  **Processing time limitation (600 hours):**\
+    $$ 2A + B \le 600 $$
+
+4.  **Non-negativity constraints:**\
+    $$A,B \ge 0 $$
+
+This code will walk you through the set up of the minimization progment and then the constraints
+
+### Minimization
+
+```{r}
+
+# Objective coefficients (for 2A + 3B)
+objective <- c(2, 3)
+
+```
+### Constraints
+```{r}
+# Constraint matrix
+constraints <- matrix(c(
+  1, 0,   # A >= 125
+  1, 1,   # A + B >= 350
+  2, 1    # 2A + B <= 600
+), nrow = 3, byrow = TRUE)
+
+# Direction of constraints
+direction <- c(">=", ">=", "<=")
+
+# Right-hand side of constraints
+rhs <- c(125, 350, 600)
+```
+### Linear Formula
+
+```{r}
+# Solve the LP
+solution <- lp(direction = "min", objective.in = objective, const.mat = constraints, const.dir = direction,const.rhs = rhs)
+
+```
+
+### Answer
+
+```{r}
+
+# Display results
+solution$objval       # Minimum total cost
+solution$solution      # Optimal values for A and B
+```
+
+# Max Example
+
+## Step 1 --- Welte Mutual Funds
+
+### **Decision Variables**
+
+Let
+
+\[
+
+```{=tex}
+\begin{aligned}
+x_1 &= \text{dollars invested in Atlantic Oil} \\
+x_2 &= \text{dollars invested in Pacific Oil} \\
+x_3 &= \text{dollars invested in Midwest Steel} \\
+x_4 &= \text{dollars invested in Huber Steel} \\
+x_5 &= \text{dollars invested in Government Bonds}
+\end{aligned}
+```
+\]
+
+------------------------------------------------------------------------
+
+### **Objective Function**
+
+Maximize the total projected return:
+
+$$ \text{Maximize } Z = 0.073x_1 + 0.103x_2 + 0.064x_3 + 0.075x_4 + 0.045x_5 $$
+
+------------------------------------------------------------------------
+
+### **Subject to the Constraints**
+
+1.  **Total investment (available funds):**\
+    $$  x_1 + x_2 + x_3 + x_4 + x_5 = 100{,}000$$ 
+
+2.  **Oil industry limit:**\
+    $$  x_1 + x_2 \le 50{,}000 $$ \
+
+3.  **Steel industry limit:**\
+        $$   x_3 + x_4 \le 50{,}000 $$ 
+
+4.  **Government bonds requirement (≥ 25 % of steel investment):**\
+        $$   x_5 \ge 0.25(x_3 + x_4)     $$   or equivalently
+        $$  -x_5 + 0.25x_3 + 0.25x_4 \le 0     $$  
+        
+
+5.  **Pacific Oil limit (≤ 60 % of total oil investment):**\
+        $$   x_2 \le 0.60(x_1 + x_2)     $$  
+        or equivalently
+        $$   -0.6x_1 + 0.4x_2 \le 0     $$  
+
+6.  **Non-negativity:**\
+        $$   x_1,,x_2,,x_3,,x_4,,x_5 \ge 0     $$  
+        
+### Maximizations        
+
+```{r}
+# Objective coefficients
+objective <- c(0.073, 0.103, 0.064, 0.075, 0.045)
+```
+
+Constraints
+
+```{r}
+# Constraint matrix
+constraints <- matrix(c(
+  # x1  x2   x3   x4   x5
+   1,   1,   1,   1,   1,      # total investment = 100000
+   1,   1,   0,   0,   0,      # oil ≤ 50000
+   0,   0,   1,   1,   0,      # steel ≤ 50000
+   0,   0,   0.25, 0.25, -1,   # bond ≥ 0.25*(steel)
+  -0.6, 0.4,  0,   0,   0      # Pacific Oil ≤ 0.6*(oil)
+), nrow = 5, byrow = TRUE)
+
+# Direction of constraints
+directions <- c("=", "<=", "<=", "<=", "<=")
+
+# Right-hand side of constraints
+rhs <- c(100000, 50000, 50000, 0, 0)
+```
+
+### Linear Formula
+```{r}
+# Solve the LP
+solution <- lp(direction = "max",
+               objective.in = objective,
+               const.mat = constraints,
+               const.dir = directions,
+               const.rhs = rhs)
+```
+
+### Answer
+```{r}
+# Results
+solution$status        # 0 = optimal
+solution$objval        # Maximum return
+solution$solution      # Optimal investment in x1-x5
+```
